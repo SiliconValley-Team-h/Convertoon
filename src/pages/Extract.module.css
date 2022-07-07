@@ -1,18 +1,17 @@
-/* container : viewBox 2개 한묶음 */
+/* container : header와 status 제외한 나머지 섹션 */
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
   height: 91vh;
-  border-collapse: collapse;
 }
 
-/* viewBox : 좌우측으로 나눠진 컴포넌트 (좌측 : 이미지 업로드, 우측 : 텍스트 추출) */
+/* viewBox : 좌우측으로 나눠진 섹션 (좌측 : 이미지 업로드 섹션, 우측 : 텍스트 추출 섹션) */
 .viewBox {
   background: white;
   border: 1px solid #c2c2c2;
-  text-align: center;
   display: grid;
+  text-align: center;
   justify-content: center;
   align-items: center;
 }
@@ -27,4 +26,31 @@
 .state {
   height: 4vh;
   background-color: coral;
+}
+
+/* 업로드 버튼 */
+.uploadBtn {
+  color: black;
+  background-color: #fcdd9e;
+  border: 0;
+  border-radius: 40px;
+  font-size: 18px;
+  width: 160px;
+  height: 40px;
+  text-align: center;
+  margin: 30px auto;
+  cursor: pointer;
+}
+
+/* 추출 버튼 */
+.extractBtn {
+  color: black;
+  background-color: #c2c2c2;
+  border: 0;
+  border-radius: 40px;
+  font-size: 18px;
+  width: 130px;
+  height: 40px;
+  text-align: center;
+  margin: 30px auto;
 }
