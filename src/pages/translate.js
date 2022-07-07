@@ -3,11 +3,15 @@ import styles from './Translate.module.css';
 import SelectLang from '../components/translate/SelectLang';
 import Buttons from '../components/translate/Buttons';
 import Header from '../components/common/Header';
+import State from '../components/common/State';
 
 function Translate() {
   return (
     <Fragment>
       <Header />
+      <State>
+        <p>추출된 텍스트</p>
+      </State>
       <main>
         <div className={styles.container}>
           <div className={styles.section}>

@@ -11,7 +11,9 @@ function Extract() {
   return (
     <Fragment>
       <Header />
-      <State />
+      <State>
+        <p>추출된 텍스트</p>
+      </State>
       <main>
         <div className={styles.container}>
           <div className={styles.viewBox}>
