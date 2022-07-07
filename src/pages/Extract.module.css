@@ -1,0 +1,30 @@
+/* container : viewBox 2개 한묶음 */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  height: 91vh;
+  border-collapse: collapse;
+}
+
+/* viewBox : 좌우측으로 나눠진 컴포넌트 (좌측 : 이미지 업로드, 우측 : 텍스트 추출) */
+.viewBox {
+  background: white;
+  border: 1px solid #c2c2c2;
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 임의 header */
+.header {
+  height: 5vh;
+  background-color: aquamarine;
+}
+
+/* 임의 state */
+.state {
+  height: 4vh;
+  background-color: coral;
+}
