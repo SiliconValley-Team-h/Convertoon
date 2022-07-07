@@ -13,16 +13,3 @@
     justify-content: center;
     align-items: flex-start;
   }
-
-  /* 임의 header */
-.header {
-    height: 5vh;
-    background-color: aquamarine;
-  }
-  
-  /* 임의 state */
-  .state {
-    height: 4vh;
-    background-color: coral;
-  }
-  

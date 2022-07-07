@@ -16,18 +16,6 @@
   align-items: center;
 }
 
-/* 임의 header */
-.header {
-  height: 5vh;
-  background-color: aquamarine;
-}
-
-/* 임의 state */
-.state {
-  height: 4vh;
-  background-color: coral;
-}
-
 /* 업로드 버튼 */
 .uploadBtn {
   color: black;

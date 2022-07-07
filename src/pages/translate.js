@@ -1,13 +1,13 @@
-import { React } from 'react';
+import { React, Fragment } from 'react';
 import styles from './Translate.module.css';
 import SelectLang from '../components/translate/SelectLang';
 import Buttons from '../components/translate/Buttons';
+import Header from '../components/common/Header';
 
 function Translate() {
   return (
-    <div>
-      <header className={styles.header}></header>
-      <nav className={styles.state}></nav>
+    <Fragment>
+      <Header />
       <main>
         <div className={styles.container}>
           <div className={styles.section}>
@@ -19,7 +19,7 @@ function Translate() {
           </div>
         </div>
       </main>
-    </div>
+    </Fragment>
   );
 }
 
