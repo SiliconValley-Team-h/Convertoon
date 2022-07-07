@@ -1,11 +1,17 @@
-import { React, Fragment } from 'react';
-import Save from './components/pages/Save.js';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Extract from './pages/Extract';
+import Save from './pages/Save';
+import Translate from './pages/Translate';
 
 function App() {
   return (
-    <Fragment>
-      <Save />
-    </Fragment>
+    <Router>
+      <Routes>
+        <Route path="/extract" element={<Extract />} />
+        <Route path="/save" element={<Save />} />
+        <Route path="/translate" element={<Translate />} />
+      </Routes>
+    </Router>
   );
 }
 
