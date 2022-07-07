@@ -10,7 +10,7 @@ function Translate() {
     <Fragment>
       <Header />
       <State>
-        <p>추출된 텍스트</p>
+        <p className={styles.text}>추출된 텍스트</p>
       </State>
       <main>
         <div className={styles.container}>
