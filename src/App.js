@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Extract from "./pages/Extract";
-import Save from "./pages/Save";
-import Translate from "./pages/Translate";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Extract from './pages/Extract';
+import Save from './pages/Save';
+import Translate from './pages/Translate';
 
 function App() {
   return (

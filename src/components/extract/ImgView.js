@@ -1,10 +1,9 @@
-import UploadBtn from "./UploadBtn";
-import InputImg from "./InputImg";
+import UploadBtn from './UploadBtn';
+import InputImg from './InputImg';
 
 function ImageView() {
   return (
-    <div
-    >
+    <div>
       <InputImg />
       <UploadBtn />
     </div>
