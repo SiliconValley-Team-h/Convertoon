@@ -2,15 +2,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
+    height: 91vh;
     border-collapse: collapse;
-}
+  }
 
 .viewBox {
     background: white;
     border: 1px solid #c2c2c2;
     text-align: center;
+    grid-template-columns: 1fr;
     display: grid;
     justify-content: center;
     align-items: center;
 }
-  
