@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { useState } from 'react';
 import Header from '../components/common/Header';
 import State from '../components/common/State';
@@ -8,11 +9,9 @@ import styles from './Extract.module.css';
 function Extract() {
   const [img, setImg] = useState(''); /* 선택한 이미지 파일 */
   return (
-    <div>
+    <Fragment>
       <Header />
-      <State>
-        <p className={styles.text}>추출된 텍스트</p>
-      </State>
+      <State />
       <main>
         <div className={styles.container}>
           <div className={styles.viewBox}>
@@ -24,12 +23,12 @@ function Extract() {
           <div className={styles.viewBox}>
             <div>
               <TextView />
-              <button className={styles.extractBtn}>Upload</button>
+              <button className={styles.extractBtn}>추출</button>
             </div>
           </div>
         </div>
       </main>
-    </div>
+    </Fragment>
   );
 }
 

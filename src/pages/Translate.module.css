@@ -1,35 +1,15 @@
 .container {
-    display: grid;
-    grid-template-rows: 0.5fr 8fr 1.5fr;
-    gap: 0;
-    height: 91vh;
-  }
+  display: grid;
+  grid-template-rows: 0.5fr 8fr 1.5fr;
+  gap: 0;
+  height: 91vh;
+}
 
-  /* 나눠진 섹션 : 언어 선택, 번역 결과, 버튼 섹션 */
+/* 나눠진 섹션 : 언어 선택, 번역 결과, 버튼 섹션 */
 .section {
-    background: white;
-    text-align: center;
-    display: grid;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  /* 임의 header */
-.header {
-    height: 5vh;
-    background-color: aquamarine;
-  }
-  
-  /* 임의 state */
-  .state {
-    height: 4vh;
-    background-color: coral;
-  }
-  
-  
-.text {
-  height: 30px;
-  margin : 0;
-  padding-top : 5px;
-  vertical-align : middle;
+  background: white;
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  align-items: flex-start;
 }
