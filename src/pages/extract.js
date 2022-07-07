@@ -1,7 +1,7 @@
-import { React } from "react";
-import ImgView from "../components/extract/ImgView";
-import TextView from "../components/extract/TextView";
-import styles from "./Extract.module.css";
+import { React } from 'react';
+import ImgView from '../components/extract/ImgView';
+import TextView from '../components/extract/TextView';
+import styles from './Extract.module.css';
 
 function Extract() {
   return (

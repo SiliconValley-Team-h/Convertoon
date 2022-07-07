@@ -1,5 +1,5 @@
-import ExtractBtn from "./ExtractBtn";
-import TextImg from "./TextImg.png";
+import ExtractBtn from './ExtractBtn';
+import TextImg from './TextImg.png';
 
 function ImageView() {
   return (
@@ -8,13 +8,13 @@ function ImageView() {
         src={TextImg}
         alt="text"
         style={{
-          width: "45px",
-          textAlign: "center",
-          justifyContent: "center",
-          margin: "10px",
+          width: '45px',
+          textAlign: 'center',
+          justifyContent: 'center',
+          margin: '10px',
         }}
       />
-      <div style={{ fontSize: "18px" }}>
+      <div style={{ fontSize: '18px' }}>
         추출된 텍스트가
         <br />
         여기에 노출됩니다.
