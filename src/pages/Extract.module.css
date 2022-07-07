@@ -54,3 +54,11 @@
   text-align: center;
   margin: 30px auto;
 }
+
+
+.text {
+  height: 30px;
+  margin : 0;
+  padding-top : 5px;
+  vertical-align : middle;
+}

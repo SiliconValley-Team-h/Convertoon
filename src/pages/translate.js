@@ -1,4 +1,6 @@
 import { React } from 'react';
+import Header from '../components/common/Header';
+import State from '../components/common/State';
 import styles from './Translate.module.css';
 import SelectLang from '../components/translate/SelectLang';
 import Buttons from '../components/translate/Buttons';
@@ -6,8 +8,10 @@ import Buttons from '../components/translate/Buttons';
 function Translate() {
   return (
     <div>
-      <header className={styles.header}></header>
-      <nav className={styles.state}></nav>
+      <Header />
+      <State>
+        <p className={styles.text}>추출된 텍스트</p>
+      </State>
       <main>
         <div className={styles.container}>
           <div className={styles.section}>

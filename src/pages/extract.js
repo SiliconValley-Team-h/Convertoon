@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Header from '../components/common/Header';
+import State from '../components/common/State';
 import InputImg from '../components/extract/InputImg';
 import TextView from '../components/extract/TextView';
 import styles from './Extract.module.css';
@@ -7,8 +9,10 @@ function Extract() {
   const [img, setImg] = useState(''); /* 선택한 이미지 파일 */
   return (
     <div>
-      <header className={styles.header}></header>
-      <nav className={styles.state}></nav>
+      <Header />
+      <State>
+        <p className={styles.text}>추출된 텍스트</p>
+      </State>
       <main>
         <div className={styles.container}>
           <div className={styles.viewBox}>

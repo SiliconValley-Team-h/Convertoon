@@ -12,6 +12,7 @@ function Save() {
     <Fragment>
       <Header />
       <State>
+        <p className={styles.text}>번역본</p>
         <SaveBtn></SaveBtn>
       </State>
       <div className={styles.container}>
