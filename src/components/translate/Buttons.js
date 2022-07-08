@@ -7,7 +7,9 @@ function Buttons() {
     <div>
       <button className={styles.btn}>번역</button>
       <Link to={`/save`}>
-        <button className={styles.btn}>삽입</button>
+        <button className={styles.btn} disabled="true">
+          삽입
+        </button>
       </Link>
     </div>
   );

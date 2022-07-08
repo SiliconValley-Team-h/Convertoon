@@ -1,0 +1,15 @@
+.table {
+    width: 800px;
+    height: 100px;
+    gap: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.cols {
+    border: 1px solid #c2c2c2;
+    border-collapse: collapse;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}

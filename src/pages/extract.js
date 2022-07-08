@@ -4,6 +4,7 @@ import Header from '../components/common/Header';
 import State from '../components/common/State';
 import InputImg from '../components/extract/InputImg';
 import TextView from '../components/extract/TextView';
+import TextField from '../components/extract/TextField';
 import styles from './Extract.module.css';
 
 function Extract() {

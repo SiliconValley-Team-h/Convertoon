@@ -4,7 +4,7 @@ import SelectLang from '../components/translate/SelectLang';
 import Buttons from '../components/translate/Buttons';
 import Header from '../components/common/Header';
 import State from '../components/common/State';
-
+import TranslateField from '../components/translate/TranslateField';
 function Translate() {
   return (
     <Fragment>
@@ -17,7 +17,9 @@ function Translate() {
           <div className={styles.section}>
             <SelectLang />
           </div>
-          <div className={styles.section}></div>
+          <div className={styles.section}>
+            <TranslateField />
+          </div>
           <div className={styles.section}>
             <Buttons />
           </div>
