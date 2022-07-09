@@ -8,7 +8,6 @@
 /* 나눠진 섹션 : 언어 선택, 번역 결과, 버튼 섹션 */
 .section {
   background: white;
-  text-align: center;
   display: grid;
   justify-content: center;
   align-items: flex-start;

@@ -3,7 +3,6 @@ import styles from './Translate.module.css';
 import SelectLang from '../components/translate/SelectLang';
 import Buttons from '../components/translate/Buttons';
 import Header from '../components/common/Header';
-import State from '../components/common/State';
 import TranslateField from '../components/translate/TranslateField';
 function Translate() {
   return (
@@ -15,6 +14,7 @@ function Translate() {
             <SelectLang />
           </div>
           <div className={styles.section}>
+            <TranslateField />
             <TranslateField />
           </div>
           <div className={styles.section}>

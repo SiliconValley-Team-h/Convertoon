@@ -2,13 +2,14 @@ import { Fragment, useState } from 'react';
 import Header from '../components/common/Header';
 import State from '../components/common/State';
 import TextView from '../components/extract/TextView';
-import TextField from '../components/extract/TextField';
+import MoveBtn from '../components/extract/MoveBtn';
 import styles from './Extract.module.css';
 
 function Extract() {
   const [img, setImg] = useState(''); /* 선택한 이미지 파일 */
   const [visible, setVisible] = useState(true); /* 파일 선택 & 업로드 버튼 숨기기 여부 */
   const [disable, setDisable] = useState(true); /* 버튼 활성화 여부 */
+  const [movedisable, setMoveDisable] = useState(true);
 
   const encodeFileToBase64 = fileBlob => {
     const reader = new FileReader(); /* reader 생성 */
@@ -38,6 +39,7 @@ function Extract() {
       <Header />
       <State>
         <p className={styles.text}>추출된 텍스트</p>
+        <MoveBtn></MoveBtn>
       </State>
       <main>
         <div className={styles.container}>

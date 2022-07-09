@@ -10,3 +10,7 @@
     margin: 30px 20px;
     cursor: pointer;
 }
+
+.btn:disabled {
+    background-color: #c2c2c2;
+}
