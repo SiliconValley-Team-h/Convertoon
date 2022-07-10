@@ -16,20 +16,6 @@
   align-items: center;
 }
 
-/* 업로드 버튼 */
-.uploadBtn {
-  color: black;
-  background-color: #fcdd9e;
-  border: 0;
-  border-radius: 40px;
-  font-size: 18px;
-  width: 160px;
-  height: 40px;
-  text-align: center;
-  margin: 30px auto;
-  cursor: pointer;
-}
-
 /* 추출 버튼 - 비활성화 */
 .disabledExtractBtn {
   color: black;
@@ -57,7 +43,6 @@
   cursor: pointer;
 }
 
-
 .text {
   height: 30px;
   margin : 0;
@@ -65,19 +50,18 @@
   vertical-align : middle;
 }
 
-/* 파일 선택 */
-.file {
+/* 파일 선택 버튼 */
+.selectBtn {
+  color: black;
+  background-color: #fcdd9e;
+  border: 0;
+  border-radius: 40px;
+  font-size: 18px;
+  width: 130px;
+  height: 40px;
   text-align: center;
-  justify-content: center;
-  height: 10vh;
-  width: 20vw;
-  padding: 45% 0% 30% 30%;
-  border: dashed 1px #000;
-}
-
-/* 사진 미리보기 */
-.previewImg {
-  width: 100%;
+  margin: 30px auto;
+  cursor: pointer;
 }
 
 .moveBtn {

@@ -1,19 +1,20 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useRef } from 'react';
 import Header from '../components/common/Header';
 import State from '../components/common/State';
+import ImgView from '../components/extract/ImgView';
 import TextView from '../components/extract/TextView';
 import styles from './Extract.module.css';
 
 function Extract() {
   const [img, setImg] = useState(''); /* 선택한 이미지 파일 */
-  const [visible, setVisible] = useState(true); /* 파일 선택 & 업로드 버튼 숨기기 여부 */
-  const [disable, setDisable] = useState(true); /* 버튼 활성화 여부 */
+  const [visible, setVisible] = useState(false); /* 미리보기 활성화 여부 */
+  const [disable, setDisable] = useState(true); /* 추출 버튼 활성화 여부 */
   const [movedisable, setMoveDisable] = useState(true);
+  const imageInput = useRef();
 
   const encodeFileToBase64 = fileBlob => {
     const reader = new FileReader(); /* reader 생성 */
     reader.readAsDataURL(fileBlob); /* fileBlob을 base64로 인코딩 */
-
     return new Promise(resolve => {
       reader.onload = () => {
         setImg(reader.result); /* reader.result 안의 문자열을 img에 세팅 */
@@ -22,15 +23,17 @@ function Extract() {
     });
   };
 
-  /* 업로드 버튼 클릭 시 */
-  const onClick = event => {
+  /* 파일 선택 시 */
+  const onChange = event => {
     event.preventDefault();
-    /* 이미지 파일 선택 안했을 경우 */
-    if (img === '') {
-      return;
-    }
-    setVisible(current => !current); /* 파일 선택 & 업로드 버튼 숨기기 */
-    setDisable(current => !current); /* 추출 버튼 활성화 */
+    encodeFileToBase64(event.target.files[0]);
+    setVisible(true); /* 미리보기 활성화 */
+    setDisable(false); /* 추출 버튼 활성화 */
+  };
+
+  const onClickInput = event => {
+    event.preventDefault();
+    imageInput.current.click();
   };
 
   const onClickExtract = event => {
@@ -52,37 +55,28 @@ function Extract() {
           번역하러가기
         </button>
       </State>
-      <main>
-        <div className={styles.container}>
-          <div className={styles.viewBox}>
-            {visible ? (
-              <div>
-                <input
-                  type="file"
-                  className={styles.file}
-                  onChange={e => {
-                    encodeFileToBase64(e.target.files[0]);
-                  }}
-                />{' '}
-                <button className={styles.uploadBtn} onClick={onClick}>
-                  Upload
-                </button>
-              </div>
-            ) : (
-              <img className={styles.previewImg} src={img} alt="previewImg" />
-            )}
-          </div>
-          <div className={styles.viewBox}>
+      <main className={styles.container}>
+        <div className={styles.viewBox}>
+          <div>
+            <ImgView visible={visible} image={img} />
             <div>
-              <TextView />
-              <button
-                className={disable ? styles.disabledExtractBtn : styles.abledExtractBtn}
-                disabled={disable}
-                onClick={onClickExtract}
-              >
-                추출
+              <input type="file" id="input-file" style={{ display: 'none' }} onChange={onChange} ref={imageInput} />
+              <button className={styles.selectBtn} for="input-file" onClick={onClickInput}>
+                파일 선택
               </button>
             </div>
+          </div>
+        </div>
+        <div className={styles.viewBox}>
+          <div>
+            <TextView />
+            <button
+              className={disable ? styles.disabledExtractBtn : styles.abledExtractBtn}
+              disabled={disable}
+              onClick={onClickExtract}
+            >
+              추출
+            </button>
           </div>
         </div>
       </main>
