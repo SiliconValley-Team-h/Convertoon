@@ -79,3 +79,18 @@
 .previewImg {
   width: 100%;
 }
+
+.moveBtn {
+  color: black;
+  background-color: #fcdd9e;
+  border: 0;
+  width: 100px;
+  border-radius: 40px;
+  text-align: center;
+  position: absolute;
+  right: 20px;
+}
+
+.moveBtn:disabled {
+  background-color: #c2c2c2;
+}

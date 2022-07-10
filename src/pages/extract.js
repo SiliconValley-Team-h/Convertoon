@@ -2,7 +2,6 @@ import { Fragment, useState } from 'react';
 import Header from '../components/common/Header';
 import State from '../components/common/State';
 import TextView from '../components/extract/TextView';
-import MoveBtn from '../components/extract/MoveBtn';
 import styles from './Extract.module.css';
 
 function Extract() {
@@ -34,12 +33,24 @@ function Extract() {
     setDisable(current => !current); /* 추출 버튼 활성화 */
   };
 
+  const onClickExtract = event => {
+    event.preventDefault();
+    setMoveDisable(current => !current);
+  };
+
+  const onClickMove = event => {
+    event.preventDefault();
+    window.location.href = '/translate';
+  };
+
   return (
     <Fragment>
       <Header />
       <State>
         <p className={styles.text}>추출된 텍스트</p>
-        <MoveBtn></MoveBtn>
+        <button className={styles.moveBtn} onClick={onClickMove} disabled={movedisable}>
+          번역하러가기
+        </button>
       </State>
       <main>
         <div className={styles.container}>
@@ -64,7 +75,11 @@ function Extract() {
           <div className={styles.viewBox}>
             <div>
               <TextView />
-              <button className={disable ? styles.disabledExtractBtn : styles.abledExtractBtn} disabled={disable}>
+              <button
+                className={disable ? styles.disabledExtractBtn : styles.abledExtractBtn}
+                disabled={disable}
+                onClick={onClickExtract}
+              >
                 추출
               </button>
             </div>
