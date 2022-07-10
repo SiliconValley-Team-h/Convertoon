@@ -19,17 +19,17 @@ function TranslateField() {
   return (
     <div>
       <span lang="ko">
-        <textarea className={styles.textField} ref={inputEl} readOnly={read}>
+        <textarea className={styles.textField} readOnly="true" disabled="true">
           원본 텍스트
         </textarea>
       </span>
       <span lang="en">
-        <textarea className={styles.textField} readOnly="true" disabled="true">
+        <textarea className={styles.textField} ref={inputEl} readOnly={read}>
           번역된 텍스트
         </textarea>
       </span>
       <div>
-        <button className={styles.modifyBtn} onClick={modify}>
+        <button className={styles.modifyBtn} onClick={modify} style={{ float: 'right' }}>
           {message}
         </button>
       </div>
