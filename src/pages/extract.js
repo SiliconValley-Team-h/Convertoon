@@ -3,6 +3,7 @@ import Header from '../components/common/Header';
 import State from '../components/common/State';
 import ImgView from '../components/extract/ImgView';
 import TextView from '../components/extract/TextView';
+import TextField from '../components/extract/TextField';
 import styles from './Extract.module.css';
 
 function Extract() {
@@ -10,6 +11,7 @@ function Extract() {
   const [visible, setVisible] = useState(false); /* 미리보기 활성화 여부 */
   const [disable, setDisable] = useState(true); /* 추출 버튼 활성화 여부 */
   const [movedisable, setMoveDisable] = useState(true);
+  const [btnVisible, setBtnVisible] = useState(true); /* 추출 버튼 표시 여부 */
   const imageInput = useRef();
 
   const encodeFileToBase64 = fileBlob => {
@@ -39,6 +41,7 @@ function Extract() {
   const onClickExtract = event => {
     event.preventDefault();
     setMoveDisable(false);
+    setBtnVisible(false);
   };
 
   const onClickMove = event => {
@@ -68,16 +71,23 @@ function Extract() {
           </div>
         </div>
         <div className={styles.viewBox}>
-          <div>
-            <TextView />
-            <button
-              className={disable ? styles.disabledExtractBtn : styles.abledExtractBtn}
-              disabled={disable}
-              onClick={onClickExtract}
-            >
-              추출
-            </button>
-          </div>
+          {btnVisible ? (
+            <div>
+              <TextView />
+              <button
+                className={disable ? styles.disabledExtractBtn : styles.abledExtractBtn}
+                disabled={disable}
+                onClick={onClickExtract}
+              >
+                추출
+              </button>
+            </div>
+          ) : (
+            <div>
+              <TextField />
+              <TextField />
+            </div>
+          )}
         </div>
       </main>
     </Fragment>
