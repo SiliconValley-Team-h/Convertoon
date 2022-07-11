@@ -38,7 +38,7 @@ function Extract() {
 
   const onClickExtract = event => {
     event.preventDefault();
-    setMoveDisable(current => !current);
+    setMoveDisable(false);
   };
 
   const onClickMove = event => {
