@@ -1,0 +1,25 @@
+.modifyBtn {
+    margin: 8px 0px 20px;
+    background-color: #fcdd9e;
+    border: 0;
+    border-radius: 40px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.textField {
+    resize: none;
+    width: 40vw;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.textField:disabled {
+    background-color: white;
+    color: black;
+}
+
+.textField:focus {
+    background-color: yellow;
+    outline: 0;
+}
