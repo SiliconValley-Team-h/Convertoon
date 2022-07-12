@@ -9,4 +9,5 @@ urlpatterns = [
     path('api/results/', getOcrResults),
     path('api/extractTexts/<int:img_id>/', getExtractTexts),
     path('api/getSrcImg/<int:img_id>/', getSrcImg),
+    path('api/getInsTextImg/<int:img_id>/', getInsTextImg),
 ]

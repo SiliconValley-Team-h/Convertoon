@@ -13,6 +13,12 @@ from rest_framework.response import Response
 from .models import SrcImg,ExtractText,ResultImg
 from .serializers import SrcImgSerializer,ResultImgSerializer,ExtractTextSerializer
 
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+import numpy as np
+import ast
+
 
 @method_decorator(csrf_exempt, name="dispatch")
 def getOcrResults(request):
@@ -50,11 +56,16 @@ def getOcrResults(request):
         return HttpResponse(json.dumps({"status":"Failed"}))
 
 
+
+
 def getSrcImg(request, img_id):
     srcImg = SrcImg.objects.get(img_id=img_id)
     serializer = SrcImgSerializer(srcImg)
 
     return JsonResponse(serializer.data)
+
+
+
 
 def getExtractTexts(request, img_id):
     querySet = ExtractText.objects.filter(src_img_id=img_id)
@@ -62,3 +73,48 @@ def getExtractTexts(request, img_id):
     
     return HttpResponse(content=data)
     
+
+
+
+def getInsTextImg(reqeust, img_id):
+    querySet = ExtractText.objects.filter(src_img_id=img_id)
+    listTextExtract = serializers.serialize("json", querySet)
+
+    srcImg = SrcImg.objects.get(img_id=img_id)
+    image = Image.open("."+srcImg.image.url)
+
+    fontsize = 15
+    fnt = ImageFont.truetype("../Font/Roboto-Black.ttf", fontsize, encoding="UTF-8")
+    draw = ImageDraw.Draw(image)
+
+
+    for extractText in querySet:
+        coord = ast.literal_eval(extractText.coordinate)
+        rect = []
+        rect.extend(coord[0])
+        rect.extend(coord[2])
+        draw.rectangle(rect, outline=(255,255,255,0),fill=(255,255,255,0),width=2 )
+    
+
+    for extractText in querySet:
+        coord = ast.literal_eval(extractText.coordinate)
+        rect = []
+        rect.extend(coord[0])
+        rect.extend(coord[2])
+
+        enText = extractText.trs_text
+        draw.text((rect[0],rect[1]),enText,font=fnt,fill="black")
+    
+
+    filename = 'temp_img_'+str(img_id)+'.jpg'
+    image.save('./media/'+filename)
+
+
+    resultImg = ResultImg()
+    resultImg.image = filename
+    resultImg.img_id = img_id
+    resultImg.save()
+
+    serializer = ResultImgSerializer(resultImg)
+
+    return JsonResponse(serializer.data)
