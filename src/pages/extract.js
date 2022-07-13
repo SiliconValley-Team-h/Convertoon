@@ -1,4 +1,4 @@
-import { Fragment, useState, useRef } from 'react';
+import { Fragment, useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/common/Header';
@@ -10,7 +10,7 @@ import styles from './Extract.module.css';
 
 function Extract() {
   const [img, setImg] = useState(''); /* 선택한 이미지 파일 */
-  const [id, setId] = useState(0);
+  const [imgId, setImgId] = useState(0);
   const [visible, setVisible] = useState(false); /* 미리보기 활성화 여부 */
   const [disable, setDisable] = useState(true); /* 추출 버튼 활성화 여부 */
   const [movedisable, setMoveDisable] = useState(true);
@@ -29,6 +29,10 @@ function Extract() {
     });
   };
 
+  useEffect(() => {
+    console.log(imgId);
+  }, [imgId]);
+
   /* 파일 선택 시 */
   const onChange = event => {
     event.preventDefault();
@@ -36,13 +40,11 @@ function Extract() {
 
     formData.append('image', event.target.files[0]);
     axios.post('http://127.0.0.1:8000/api/results/', formData).then(response => {
-      setId(4);
-      console.log(id);
+      setImgId(response.data.img_id);
     });
 
     setVisible(true); /* 미리보기 활성화 */
     setDisable(false); /* 추출 버튼 활성화 */
-    console.log(disable);
   };
 
   const onClickInput = event => {
@@ -61,7 +63,7 @@ function Extract() {
       <Header />
       <State>
         <p className={styles.text}>추출된 텍스트</p>
-        <Link to={`/translate`} state={{ id: { id } }}>
+        <Link to={`/translate`} state={{ imgId: { imgId } }}>
           <button className={styles.moveBtn} disabled={movedisable}>
             번역하러가기
           </button>
