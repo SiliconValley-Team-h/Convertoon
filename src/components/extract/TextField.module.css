@@ -1,5 +1,5 @@
 .modifyBtn {
-    margin: 8px 0px 20px;
+    margin: 1px 0px 10px;
     background-color: #fcdd9e;
     border: 0;
     border-radius: 40px;
@@ -10,8 +10,9 @@
 .textField {
     resize: none;
     width: 40vw;
-    height: 100px;
+    height: 50px;
     border: 1px solid black;
+    margin: 10px 0px 0px;
 }
 
 .textField:disabled {

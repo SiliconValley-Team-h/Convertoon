@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import styles from './TextField.module.css';
 
-function TextField() {
+function TextField({ text }) {
   const [message, setMessage] = useState('수정하기');
   const [read, setRead] = useState(true);
   const inputEl = useRef(null);
@@ -18,11 +19,9 @@ function TextField() {
 
   return (
     <div>
-      <span lang="ko">
-        <textarea className={styles.textField} ref={inputEl} readOnly={read}>
-          추출된 텍스트
-        </textarea>
-      </span>
+      <textarea className={styles.textField} ref={inputEl} readOnly={read}>
+        {text}
+      </textarea>
       <div>
         <button className={styles.modifyBtn} onClick={modify} style={{ float: 'right' }}>
           {message}
@@ -31,5 +30,9 @@ function TextField() {
     </div>
   );
 }
+
+TextField.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export default TextField;

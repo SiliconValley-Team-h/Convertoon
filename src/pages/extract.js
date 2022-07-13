@@ -11,6 +11,7 @@ import styles from './Extract.module.css';
 function Extract() {
   const [img, setImg] = useState(''); /* 선택한 이미지 파일 */
   const [imgId, setImgId] = useState(0);
+  const [texts, setTexts] = useState([]);
   const [visible, setVisible] = useState(false); /* 미리보기 활성화 여부 */
   const [disable, setDisable] = useState(true); /* 추출 버튼 활성화 여부 */
   const [movedisable, setMoveDisable] = useState(true);
@@ -33,6 +34,10 @@ function Extract() {
     console.log(imgId);
   }, [imgId]);
 
+  useEffect(() => {
+    console.log(texts);
+  }, [texts]);
+
   /* 파일 선택 시 */
   const onChange = event => {
     event.preventDefault();
@@ -54,6 +59,11 @@ function Extract() {
 
   const onClickExtract = event => {
     event.preventDefault();
+
+    axios.get(`http://127.0.0.1:8000/api/extractTexts/${imgId}/`).then(response => {
+      response.data.map(texts => setTexts(textArray => [...textArray, texts.fields.src_text]));
+    });
+
     setMoveDisable(false);
     setBtnVisible(false);
   };
@@ -63,14 +73,14 @@ function Extract() {
       <Header />
       <State>
         <p className={styles.text}>추출된 텍스트</p>
-        <Link to={`/translate`} state={{ imgId: { imgId } }}>
+        <Link to={`/translate`} state={{ imgId: imgId }}>
           <button className={styles.moveBtn} disabled={movedisable}>
             번역하러가기
           </button>
         </Link>
       </State>
       <main className={styles.container}>
-        <div className={styles.viewBox}>
+        <div className={styles.viewBox} style={visible ? { alignItems: 'flex-start' } : { alignItems: 'center' }}>
           <div>
             <ImgView visible={visible} image={img} />
             <div>
@@ -81,7 +91,7 @@ function Extract() {
             </div>
           </div>
         </div>
-        <div className={styles.viewBox}>
+        <div className={styles.viewBox} style={btnVisible ? { alignItems: 'center' } : { alignItems: 'flex-start' }}>
           {btnVisible ? (
             <div>
               <TextView />
@@ -95,8 +105,9 @@ function Extract() {
             </div>
           ) : (
             <div>
-              <TextField />
-              <TextField />
+              {texts.map(text => (
+                <TextField text={text} />
+              ))}
             </div>
           )}
         </div>
