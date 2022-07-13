@@ -1,26 +1,30 @@
-from cgitb import text
-from django.shortcuts import render, redirect,get_object_or_404
-from textExtract.forms import SrcImgForm, TranslateForm
+from django.shortcuts import render, redirect
+
+from textExtract.forms import SrcImgForm
 from easyocr import Reader
-from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 import json
-import urllib.request
 from django.core import serializers
 from rest_framework.response import Response
-from django.urls import reverse
-
+import urllib.request
+import urllib.parse
 
 from .models import SrcImg,ExtractText,ResultImg
 from .serializers import SrcImgSerializer,ResultImgSerializer,ExtractTextSerializer
 
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+import numpy as np
+import ast
+import os
 
 @method_decorator(csrf_exempt, name="dispatch")
 def getOcrResults(request):
     if(request.method=='POST'):
         form = SrcImgForm(request.POST, request.FILES)
-        
         if form.is_valid():
             form.save()
 
@@ -41,14 +45,19 @@ def getOcrResults(request):
                 extractText.coordinate = str(result[0])
                 extractText.save()
                 cnt+=1
+            
 
             return JsonResponse({
                 'text_lists' : text_lists,
                 'count' : cnt,
                 'img_id' : latestSrcImg.img_id,
-                }, json_dumps_params = {'ensure_ascii': True})
-        else:
-            return HttpResponse(json.dumps({"status":"Failed"}))
+            }, json_dumps_params = {'ensure_ascii': True})
+    
+    else:
+        return HttpResponse(json.dumps({"status":"Failed"}))
+
+
+
 
 
 def getSrcImg(request, img_id):
@@ -57,12 +66,64 @@ def getSrcImg(request, img_id):
 
     return JsonResponse(serializer.data)
 
+
+
+
 def getExtractTexts(request, img_id):
     querySet = ExtractText.objects.filter(src_img_id=img_id)
     data = serializers.serialize("json", querySet)
     
     return HttpResponse(content=data)
+    
 
+
+
+def getInsTextImg(reqeust, img_id):
+    querySet = ExtractText.objects.filter(src_img_id=img_id)
+    listTextExtract = serializers.serialize("json", querySet)
+
+    srcImg = SrcImg.objects.get(img_id=img_id)
+    image = Image.open("."+srcImg.image.url)
+
+    fontsize = 15
+    fnt = ImageFont.truetype("../Font/Roboto-Black.ttf", fontsize, encoding="UTF-8")
+    draw = ImageDraw.Draw(image)
+
+
+    for extractText in querySet:
+        coord = ast.literal_eval(extractText.coordinate)
+        rect = []
+        rect.extend(coord[0])
+        rect.extend(coord[2])
+        draw.rectangle(rect, outline=(255,255,255,0),fill=(255,255,255,0),width=2 )
+    
+
+    for extractText in querySet:
+        coord = ast.literal_eval(extractText.coordinate)
+        rect = []
+        rect.extend(coord[0])
+        rect.extend(coord[2])
+
+        enText = extractText.trs_text
+        draw.text((rect[0],rect[1]),enText,font=fnt,fill="black")
+    
+
+    filename = 'resultImg_'+str(img_id)+'.jpg'
+    image.save('./media/'+filename)
+
+
+    resultImg = ResultImg()
+    resultImg.image = filename
+    resultImg.img_id = img_id
+    resultImg.save()
+
+    serializer = ResultImgSerializer(resultImg)
+
+    return JsonResponse(serializer.data)
+
+
+
+@method_decorator(csrf_exempt, name="dispatch")
 def api_papago(request,img_id):
     if request.method == 'POST': 
         firstText = ExtractText.objects.filter(src_img_id=img_id).first()
@@ -100,16 +161,6 @@ def api_papago(request,img_id):
             'count' : cnt,
             'img_id' : img_id,
             }, json_dumps_params = {'ensure_ascii': True})
-    else:
-        return HttpResponse("error")
-
-def index(request,img_id):
-    form = TranslateForm()
-    ExtractText_list = ExtractText.objects.filter(src_img_id=img_id)
-    text = ExtractText.objects.filter(src_img_id=img_id).first()
-    context = {'ExtractText_list': ExtractText_list, 'text':text,'form':form}
-    return render(request,'textExtract/srcText_list.html',context)
-
 
 def trs_text_modify(request,img_id):
     if request.method == "GET":
@@ -118,7 +169,7 @@ def trs_text_modify(request,img_id):
         req = json.loads(request.body.decode('utf-8')) #front에서 데이터 전달 받음
         firstText = ExtractText.objects.filter(src_img_id=img_id).first() #img_id에 해당하는 첫번째 값 저장
         textId = firstText.text_id #firstText의 text_id 가져옴
-        
+
         for value in req['text_lists']: #text_lists값 하나씩 넣으며 반복
             targetText = ExtractText.objects.get(text_id=textId)
             targetText.trs_text = value
@@ -134,7 +185,7 @@ def src_text_modify(request,img_id):
         req = json.loads(request.body.decode('utf-8')) #front에서 데이터 전달 받음
         firstText = ExtractText.objects.filter(src_img_id=img_id).first() #img_id에 해당하는 첫번째 값 저장
         textId = firstText.text_id #firstText의 text_id 가져옴
-        
+
         for value in req['text_lists']: #text_lists값 하나씩 넣으며 반복
             targetText = ExtractText.objects.get(text_id=textId)
             targetText.src_text = value
@@ -142,27 +193,3 @@ def src_text_modify(request,img_id):
             textId += 1
 
         return HttpResponse("success")
-
-def test(request,img_id):
-     if request.method == "GET":
-        req = {
-            "text_lists": [
-                "Not at all",
-				"Graduate school",
-				"I'm going to go!",
-                ],
-                "count": 3,
-                "img_id": 1
-                } #front에서 데이터 전달 받음
-        firstText = ExtractText.objects.filter(src_img_id=img_id).first() #img_id에 해당하는 첫번째 값 저장
-        textId = firstText.text_id #firstText의 text_id 가져옴
-        
-        for value in req['text_lists']: #text_lists값 하나씩 넣으며 반복
-            targetText = ExtractText.objects.get(text_id=textId)
-            targetText.trs_text = value
-            targetText.save()
-            textId +=1
-        return HttpResponse("success")
-        
-
-    
