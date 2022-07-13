@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 function Translate(location) {
-  /*const data = location.state.data;*/
+  /*const data = location.state.id;*/
   useEffect(() => {
     const headers = {
       'Content-Type': 'application/json',
