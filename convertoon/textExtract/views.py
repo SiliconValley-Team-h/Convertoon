@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 import json
 from django.core import serializers
 from rest_framework.response import Response
-
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from .models import SrcImg,ExtractText,ResultImg
 from .serializers import SrcImgSerializer,ResultImgSerializer,ExtractTextSerializer
@@ -18,7 +18,7 @@ from PIL import ImageDraw
 from PIL import ImageFont
 import numpy as np
 import ast
-
+import os
 
 @method_decorator(csrf_exempt, name="dispatch")
 def getOcrResults(request):
@@ -54,6 +54,7 @@ def getOcrResults(request):
     
     else:
         return HttpResponse(json.dumps({"status":"Failed"}))
+
 
 
 
@@ -106,7 +107,7 @@ def getInsTextImg(reqeust, img_id):
         draw.text((rect[0],rect[1]),enText,font=fnt,fill="black")
     
 
-    filename = 'temp_img_'+str(img_id)+'.jpg'
+    filename = 'resultImg_'+str(img_id)+'.jpg'
     image.save('./media/'+filename)
 
 
@@ -118,3 +119,5 @@ def getInsTextImg(reqeust, img_id):
     serializer = ResultImgSerializer(resultImg)
 
     return JsonResponse(serializer.data)
+
+

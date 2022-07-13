@@ -5,15 +5,15 @@ class SrcImg(models.Model):
     img_id = models.BigAutoField(help_text="ResultImg ID", primary_key=True)
     image = models.ImageField(blank=True, null=True, upload_to="")
 
-    def __str__(self):
-        return self.img_id
+    # def __str__(self):
+    #     return self.img_id
 
 class ResultImg(models.Model):
     img_id = models.BigAutoField(help_text="ResultImg ID", primary_key=True)
     image = models.ImageField(blank=True, null=True, upload_to="")
 
-    def __str__(self):
-        return self.img_id
+    # def __str__(self):
+    #     return self.img_id
 
 class ExtractText(models.Model):
     text_id = models.BigAutoField(help_text="Extract Text ID", primary_key=True)
@@ -23,5 +23,5 @@ class ExtractText(models.Model):
     trs_text = models.TextField(help_text="result text", blank=True, null=True)
     coordinate = models.TextField(help_text="coordinate")
     
-    def __str__(self):
-        return self.text_id
+    # def __str__(self):
+    #     return self.text_id
