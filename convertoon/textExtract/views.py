@@ -162,12 +162,35 @@ def api_papago(request,img_id):
             'img_id' : img_id,
             }, json_dumps_params = {'ensure_ascii': True})
 
-def index(request,img_id):
-    ExtractText_list = ExtractText.objects.filter(src_img_id=img_id)
-    context = {'ExtractText_list': ExtractText_list}
-    return render(request,'textExtract/srcText_list.html',context)
 
 def trs_text_modify(request,img_id):
-    ExtractText_list = ExtractText.objects.filter(src_img_id=1)
-    context = {'ExtractText_list': ExtractText_list}
-    return render(request,'textExtract/srcText_list.html',context)
+    if request.method == "GET":
+        return redirect('text_extract:getText')
+    elif request.method == "POST":
+        req = json.loads(request.body.decode('utf-8')) #front에서 데이터 전달 받음
+        firstText = ExtractText.objects.filter(src_img_id=img_id).first() #img_id에 해당하는 첫번째 값 저장
+        textId = firstText.text_id #firstText의 text_id 가져옴
+        
+        for value in req['text_lists']: #text_lists값 하나씩 넣으며 반복
+            targetText = ExtractText.objects.get(text_id=textId) #targetText에 text_Id에 해당하는 ExtractText 저장
+            targetText.trs_text = value #값 수정
+            targetText.save() #수정한 값 저장
+            textId += 1 # 다음 text로 이동
+
+        return HttpResponse("success")
+
+def src_text_modify(request,img_id):
+    if request.method == "GET":
+        return redirect('text_extract:getText')
+    elif request.method == "POST":
+        req = json.loads(request.body.decode('utf-8')) #front에서 데이터 전달 받음
+        firstText = ExtractText.objects.filter(src_img_id=img_id).first() #img_id에 해당하는 첫번째 값 저장
+        textId = firstText.text_id #firstText의 text_id 가져옴
+        
+        for value in req['text_lists']: #text_lists값 하나씩 넣으며 반복
+            targetText = ExtractText.objects.get(text_id=textId)
+            targetText.src_text = value
+            targetText.save()
+            textId += 1
+
+        return HttpResponse("success")
