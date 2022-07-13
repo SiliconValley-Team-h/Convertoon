@@ -1,5 +1,5 @@
-<div>
-    {% csrf_token %}
+<div class="extract"></div>
+    <div class="extractBody">
         <h1>추출된 텍스트</h1>
         {% if ExtractText_list %}
             <ul>
@@ -10,18 +10,34 @@
         {% else %}
             <p>추출된 텍스트가 없습니다.</p>
         {% endif %}
-</div>
-
-    <div>
-        <h1>번역된 텍스트</h1>
-        {% if ExtractText_list %}
-            <ul>
-            {% for Text in ExtractText_list %}
-                <li><textarea>{{Text.trs_text}}</textarea></li>
-            {% endfor %}
-            </ul>
+        {% if text %}
+        <form action="{% url 'text_extract:translate' img_id=text.src_img_id %}" method="POST">
+        {% csrf_token %}
+            <input type="submit" value="번역하기">
+        </form>
         {% else %}
-            <p>번역된 텍스트가 없습니다.</p>
+            <h1>실패</h1>
         {% endif %}
     </div>
+</div>
+
+<div class="translate">
+    <div class="translateBody">
+        <h1>번역된 텍스트</h1>
+        
+            {% if ExtractText_list %}
+                <ul>
+                {% for Text in ExtractText_list %}
+                    <li><textarea name="content" id ="Text.text_id">{{Text.trs_text}}</textarea></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>번역된 텍스트가 없습니다.</p>
+            {% endif %}
+            <button type="submit">수정하기</button>
+        
+    </div>
+</div>
+
+
     

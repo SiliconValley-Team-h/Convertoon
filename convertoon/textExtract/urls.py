@@ -7,9 +7,10 @@ app_name = 'text_extract'
 
 urlpatterns = [
     path('api/results/', getOcrResults),
-    path('api/extractTexts/<int:img_id>/', getExtractTexts),
+    path('api/extractTexts/<int:img_id>/', getExtractTexts,name="getText"),
     path('api/getSrcImg/<int:img_id>/', getSrcImg),
     path('api/getSrcText/<int:img_id>/',index, name="textSource"),
-    path('apit/translate/<int:img_id>/',api_papago,name="translate"),
-    path('api/getSrcText/modify/<int:img_id>',trs_text_modify,name="modify"),
+    path('api/translate/<int:img_id>/',api_papago,name="translate"),
+    path('api/trsModify/<int:img_id>/',test,name="trs_modify"),
+    path('api/srcModify/',src_text_modify,name="src_modify"),
 ]
