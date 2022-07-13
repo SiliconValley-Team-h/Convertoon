@@ -6,14 +6,14 @@ class SrcImg(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to="")
 
     def __str__(self):
-        return self.img_id
+        return str(self.img_id) #수정사항
 
 class ResultImg(models.Model):
     img_id = models.BigAutoField(help_text="ResultImg ID", primary_key=True)
     image = models.ImageField(blank=True, null=True, upload_to="")
 
     def __str__(self):
-        return self.img_id
+        return str(self.img_id) #수정사항
 
 class ExtractText(models.Model):
     text_id = models.BigAutoField(help_text="Extract Text ID", primary_key=True)
@@ -24,4 +24,4 @@ class ExtractText(models.Model):
     coordinate = models.TextField(help_text="coordinate")
     
     def __str__(self):
-        return self.text_id
+        return str(self.text_id) #수정사항

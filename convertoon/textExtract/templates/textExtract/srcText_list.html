@@ -1,0 +1,27 @@
+<div>
+    {% csrf_token %}
+        <h1>추출된 텍스트</h1>
+        {% if ExtractText_list %}
+            <ul>
+            {% for Text in ExtractText_list %}
+                <li>{{Text.src_text}}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>추출된 텍스트가 없습니다.</p>
+        {% endif %}
+</div>
+
+    <div>
+        <h1>번역된 텍스트</h1>
+        {% if ExtractText_list %}
+            <ul>
+            {% for Text in ExtractText_list %}
+                <li><textarea>{{Text.trs_text}}</textarea></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>번역된 텍스트가 없습니다.</p>
+        {% endif %}
+    </div>
+    
