@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\jdong\Desktop\AI_FULLSTACK_WEB\Convertoon\myvenv"
+set "VIRTUAL_ENV=C:\Users\jdong\Desktop\Backend_HEAD\Convertoon\myvenv"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
