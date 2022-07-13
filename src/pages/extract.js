@@ -1,4 +1,5 @@
 import { Fragment, useState, useRef } from 'react';
+import axios from 'axios';
 import Header from '../components/common/Header';
 import State from '../components/common/State';
 import ImgView from '../components/extract/ImgView';
@@ -29,6 +30,11 @@ function Extract() {
   const onChange = event => {
     event.preventDefault();
     encodeFileToBase64(event.target.files[0]);
+
+    const formData = new FormData();
+    formData.append('image', event.target.files[0]);
+    axios.post('http://127.0.0.1:8000/api/results/', formData);
+
     setVisible(true); /* 미리보기 활성화 */
     setDisable(false); /* 추출 버튼 활성화 */
   };
