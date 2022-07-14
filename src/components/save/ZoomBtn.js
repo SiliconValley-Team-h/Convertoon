@@ -17,14 +17,30 @@ function ZoomBtn(props) {
   return (
     <Fragment>
       <section
+        style={{ position: 'absolute', height: '91vh', width: '100%', border: '1px solid black', overflow: 'scroll' }}
+      >
+        <img
+          src={props.srcImg}
+          alt={props.alt}
+          style={{
+            width: `${65 * ratio}%`,
+            transform: `scale(${ratio})`,
+            transformOrigin: 'left top',
+          }}
+        />
+      </section>
+      <section
         style={{
           color: 'black',
-          backgroundColor: '#A5A5A5',
+          backgroundColor: 'rgba( 165, 165, 165, 0.7 )',
           border: 0,
           width: '70px',
+          height: '25px',
           borderRadius: '40px',
           textAlign: 'center',
           paddingTop: '5px',
+          position: 'absolute',
+          margin: '15px 30px',
         }}
       >
         <img src={zoomin} alt="확대" style={{ width: '20px', height: '20px' }} onClick={zoomIn}></img>
@@ -34,18 +50,6 @@ function ZoomBtn(props) {
           style={{ marginLeft: '5px', width: '20px', height: '20px' }}
           onClick={zoomOut}
         ></img>
-      </section>
-      <section style={{ height: '500px', border: '1px solid black', overflow: 'scroll' }}>
-        <img
-          src={toon1}
-          alt={props.alt}
-          style={{
-            position: 'relative',
-            width: `${100 * ratio}%`,
-            transform: `scale(${ratio})`,
-            transformOrigin: 'left top',
-          }}
-        />
       </section>
     </Fragment>
   );

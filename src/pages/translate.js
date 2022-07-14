@@ -10,16 +10,17 @@ import axios from 'axios';
 function Translate() {
   const location = useLocation();
   const imgId = location.state.imgId;
+  const srcImg = location.state.srcImg;
   const [texts, setTexts] = useState([]);
   useEffect(() => {
     const headers = {
       'Content-Type': 'application/json',
     };
-    const url = 'http://127.0.0.1:8000/api/extractTexts/3'; /*test용*/
-    /*const url = `http://127.0.0.1:8000/api/extractTexts/${imgId}`;    수정필요*/
+    /*  const url = 'http://127.0.0.1:8000/api/extractTexts/3';     test용*/
+    const url = `http://127.0.0.1:8000/api/extractTexts/${imgId}`;
     axios.get(url, { headers }).then(function (response) {
       // response
-      setTexts(response.data.map(t => ({ src_text: t.fields.src_text, trs_text: t.fields.trs_text })));
+      response.data.map(texts => setTexts(textArray => [...textArray, texts.fields.src_text]));
     });
   }, []);
 
@@ -36,10 +37,12 @@ function Translate() {
             <SelectLang />
           </div>
           <div className={styles.section}>
-            {texts.map(text => ((<TranslateField text={text} />), (<TranslateField text={text} />)))}
+            {texts.map(text => (
+              <TranslateField text={text} />
+            ))}
           </div>
           <div className={styles.section}>
-            <Buttons />
+            <Buttons imgId={imgId} srcImg={srcImg} />
           </div>
         </div>
       </main>

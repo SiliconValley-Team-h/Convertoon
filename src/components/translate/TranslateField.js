@@ -19,10 +19,10 @@ function TranslateField({ text }) {
   return (
     <div style={{ margin: '5px' }}>
       <span lang="ko">
-        <textarea className={styles.textField} readOnly={true} disabled={true} value={text.src_text}></textarea>
+        <textarea className={styles.textField} readOnly={true} disabled={true} value={text}></textarea>
       </span>
       <span lang="en">
-        <textarea className={styles.textField} ref={inputEl} readOnly={read} value={text.trs_text}></textarea>
+        <textarea className={styles.textField} ref={inputEl} readOnly={read}></textarea>
       </span>
       <div>
         <button className={styles.modifyBtn} onClick={modify} style={{ marginTop: 0, float: 'right' }}>
