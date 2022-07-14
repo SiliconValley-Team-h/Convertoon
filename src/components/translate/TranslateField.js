@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styles from './TransField.module.css';
 
-function TranslateField() {
+function TranslateField({ text }) {
   const [message, setMessage] = useState('수정하기');
   const [read, setRead] = useState(true);
   const inputEl = useRef(null);
@@ -17,19 +17,15 @@ function TranslateField() {
   }
 
   return (
-    <div>
+    <div style={{ margin: '5px' }}>
       <span lang="ko">
-        <textarea className={styles.textField} readOnly="true" disabled="true">
-          원본 텍스트
-        </textarea>
+        <textarea className={styles.textField} readOnly={true} disabled={true} value={text.src_text}></textarea>
       </span>
       <span lang="en">
-        <textarea className={styles.textField} ref={inputEl} readOnly={read}>
-          번역된 텍스트
-        </textarea>
+        <textarea className={styles.textField} ref={inputEl} readOnly={read} value={text.trs_text}></textarea>
       </span>
       <div>
-        <button className={styles.modifyBtn} onClick={modify} style={{ float: 'right' }}>
+        <button className={styles.modifyBtn} onClick={modify} style={{ marginTop: 0, float: 'right' }}>
           {message}
         </button>
       </div>

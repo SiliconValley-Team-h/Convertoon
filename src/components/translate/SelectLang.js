@@ -6,10 +6,8 @@ function SelectLang() {
     <p style={{ textAlign: 'center' }}>
       한국어
       <img src={Arrow} alt="arrow" style={{ width: '40px', verticalAlign: 'middle', margin: '0 20px' }} />
-      <select>
-        <option value="none" selected>
-          언어 선택
-        </option>
+      <select defaultValue={'none'}>
+        <option value="none">언어 선택</option>
         <option value="English">English</option>
       </select>
     </p>

@@ -74,6 +74,7 @@
   position: absolute;
   right: 20px;
   cursor: pointer;
+  top:88.5px
 }
 
 .moveBtn:disabled {
