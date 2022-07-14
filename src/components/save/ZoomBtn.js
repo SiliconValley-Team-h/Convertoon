@@ -41,6 +41,7 @@ function ZoomBtn(props) {
           paddingTop: '5px',
           position: 'absolute',
           margin: '15px 30px',
+          cursor: 'pointer',
         }}
       >
         <img src={zoomin} alt="확대" style={{ width: '20px', height: '20px' }} onClick={zoomIn}></img>
