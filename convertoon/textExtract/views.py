@@ -163,6 +163,7 @@ def api_papago(request,img_id):
             }, json_dumps_params = {'ensure_ascii': True})
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 def trs_text_modify(request,img_id):
     if request.method == "GET":
         return redirect('text_extract:getText')
@@ -179,6 +180,7 @@ def trs_text_modify(request,img_id):
 
         return HttpResponse("success")
 
+@method_decorator(csrf_exempt, name="dispatch")
 def src_text_modify(request,img_id):
     if request.method == "GET":
         return redirect('text_extract:getText')
