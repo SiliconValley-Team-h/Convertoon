@@ -11,9 +11,10 @@
     border: 1px solid #c2c2c2;
     text-align: center;
     grid-template-columns: 1fr;
-    display: grid;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    position:relative;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 .text {

@@ -32,6 +32,7 @@ function Extract() {
 
   useEffect(() => {
     console.log(imgId);
+    imgId !== 0 && setDisable(false); /* 추출 버튼 활성화 */
   }, [imgId]);
 
   useEffect(() => {
@@ -49,7 +50,6 @@ function Extract() {
     });
 
     setVisible(true); /* 미리보기 활성화 */
-    setDisable(false); /* 추출 버튼 활성화 */
   };
 
   const onClickInput = event => {
@@ -60,12 +60,16 @@ function Extract() {
   const onClickExtract = event => {
     event.preventDefault();
 
-    axios.get(`http://127.0.0.1:8000/api/extractTexts/${imgId}/`).then(response => {
-      response.data.map(texts => setTexts(textArray => [...textArray, texts.fields.src_text]));
-    });
+    if (imgId === 0) {
+      img === '' ? alert('이미지를 선택해주세요.') : alert('이미지를 업로드 중입니다.');
+    } else {
+      axios.get(`http://127.0.0.1:8000/api/extractTexts/${imgId}/`).then(response => {
+        response.data.map(texts => setTexts(textArray => [...textArray, texts.fields.src_text]));
+      });
 
-    setMoveDisable(false);
-    setBtnVisible(false);
+      setMoveDisable(false);
+      setBtnVisible(false);
+    }
   };
 
   return (
@@ -73,7 +77,7 @@ function Extract() {
       <Header />
       <State>
         <p className={styles.text}>추출된 텍스트</p>
-        <Link to={`/translate`} state={{ imgId: imgId }}>
+        <Link to={`/translate`} state={{ imgId: imgId, srcImg: img }}>
           <button className={styles.moveBtn} disabled={movedisable}>
             번역하러가기
           </button>
@@ -95,11 +99,7 @@ function Extract() {
           {btnVisible ? (
             <div>
               <TextView />
-              <button
-                className={disable ? styles.disabledExtractBtn : styles.abledExtractBtn}
-                disabled={disable}
-                onClick={onClickExtract}
-              >
+              <button className={disable ? styles.disabledExtractBtn : styles.abledExtractBtn} onClick={onClickExtract}>
                 추출
               </button>
             </div>

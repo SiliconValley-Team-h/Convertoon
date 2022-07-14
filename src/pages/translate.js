@@ -9,6 +9,7 @@ import TranslateField from '../components/translate/TranslateField';
 function Translate() {
   const location = useLocation();
   const imgId = location.state.imgId;
+  const srcImg = location.state.srcImg;
 
   return (
     <Fragment>
@@ -23,7 +24,7 @@ function Translate() {
             <TranslateField />
           </div>
           <div className={styles.section}>
-            <Buttons />
+            <Buttons imgId={imgId} srcImg={srcImg} />
           </div>
         </div>
       </main>
