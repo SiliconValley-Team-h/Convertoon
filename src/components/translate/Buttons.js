@@ -2,12 +2,21 @@
 import styles from './Buttons.module.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 function Buttons(props) {
   const [disable, setDisable] = useState(true);
 
   function transLated() {
-    setDisable(false);
+    if (!props.trans) {
+      alert('언어를 선택해주세요.');
+    } else {
+      setDisable(false);
+      axios.post(`http://127.0.0.1:8000/api/translate/${props.imgId}/`).then(response => {
+        props.getData(response.data.text_lists);
+        props.getBtnValue(true);
+      });
+    }
   }
 
   return (
