@@ -1,18 +1,23 @@
 .modifyBtn {
-    margin: 1px 0px 10px;
+    color: black;
     background-color: #fcdd9e;
     border: 0;
     border-radius: 40px;
-    width: 70px;
+    font-size: 18px;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    margin: 30px auto;
     cursor: pointer;
 }
 
 .textField {
     resize: none;
     width: 40vw;
-    height: 50px;
+    height: 70px;
     border: 1px solid black;
-    margin: 10px 0px 0px;
+    margin: 30px 0px 0px;
+    text-align: center;
 }
 
 .textField:disabled {

@@ -61,7 +61,7 @@ function Extract() {
     event.preventDefault();
 
     if (imgId === 0) {
-      img === '' ? alert('이미지를 선택해주세요.') : alert('이미지를 업로드 중입니다.');
+      img === '' ? alert('이미지를 선택해주세요.') : alert('텍스트를 추출 중입니다.');
     } else {
       axios.get(`http://127.0.0.1:8000/api/extractTexts/${imgId}/`).then(response => {
         response.data.map(texts => setTexts(textArray => [...textArray, texts.fields.src_text]));
@@ -105,9 +105,7 @@ function Extract() {
             </div>
           ) : (
             <div>
-              {texts.map(text => (
-                <TextField text={text} />
-              ))}
+              <TextField texts={texts} />
             </div>
           )}
         </div>
