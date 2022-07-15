@@ -10,6 +10,7 @@ from django.core import serializers
 from rest_framework.response import Response
 import urllib.request
 import urllib.parse
+from django.conf import settings
 
 from .models import SrcImg,ExtractText,ResultImg
 from .serializers import SrcImgSerializer,ResultImgSerializer,ExtractTextSerializer
@@ -132,8 +133,9 @@ def api_papago(request,img_id):
         cnt = 0
 
         for i in range(firstText.text_id,lastText.text_id+1):
-            client_id = "BrFK4uZx3EBSvR_PfNIW" # 개발자센터에서 발급받은 Client ID 값
-            client_secret = "1teZNlNgnu" # 개발자센터에서 발급받은 Client Secret 값
+            config_secret_debug = json.loads(open(settings.SECRET_DEBUG_FILE).read())
+            client_id = config_secret_debug['NAVER']['CLIENT_ID'] # 개발자센터에서 발급받은 Client ID 값
+            client_secret = config_secret_debug['NAVER']['CLIENT_SECRET'] # 개발자센터에서 발급받은 Client Secret 값
 
             source = ExtractText.objects.get(text_id=i)
             encText = urllib.parse.quote(source.src_text)
