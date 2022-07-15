@@ -5,26 +5,16 @@ import SelectLang from '../components/translate/SelectLang';
 import Buttons from '../components/translate/Buttons';
 import Header from '../components/common/Header';
 import TranslateField from '../components/translate/TranslateField';
-import axios from 'axios';
 
 function Translate() {
   const location = useLocation();
   const imgId = location.state.imgId;
   const srcImg = location.state.srcImg;
-  const [texts, setTexts] = useState([]);
+  const modTexts = location.state.modTexts;
+  const [texts, setTexts] = useState(modTexts);
   const [trsTexts, setTrsTexts] = useState([]);
   const [btnClick, setBtnClick] = useState(false);
   const [trans, setTrans] = useState(false);
-  useEffect(() => {
-    const headers = {
-      'Content-Type': 'application/json',
-    };
-    const url = `http://127.0.0.1:8000/api/extractTexts/${imgId}`;
-    axios.get(url, { headers }).then(function (response) {
-      // response
-      response.data.map(texts => setTexts(textArray => [...textArray, texts.fields.src_text]));
-    });
-  }, []);
 
   useEffect(() => {
     console.log(texts);

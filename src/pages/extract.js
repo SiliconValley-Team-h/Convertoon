@@ -9,35 +9,39 @@ import TextField from '../components/extract/TextField';
 import styles from './Extract.module.css';
 
 function Extract() {
-  const [img, setImg] = useState(''); /* 선택한 이미지 파일 */
+  const [img, setImg] = useState(''); // 선택한 이미지 파일
   const [imgId, setImgId] = useState(0);
   const [texts, setTexts] = useState([]);
-  const [visible, setVisible] = useState(false); /* 미리보기 활성화 여부 */
-  const [disable, setDisable] = useState(true); /* 추출 버튼 활성화 여부 */
+  const [visible, setVisible] = useState(false); // 미리보기 활성화 여부
+  const [disable, setDisable] = useState(true); // 추출 버튼 활성화 여부
   const [movedisable, setMoveDisable] = useState(true);
-  const [btnVisible, setBtnVisible] = useState(true); /* 추출 버튼 표시 여부 */
+  const [btnVisible, setBtnVisible] = useState(true); // 추출 버튼 표시 여부
+  const [modTexts, setModTexts] = useState([]); // 수정된 텍스트
   const imageInput = useRef();
   const formData = new FormData();
 
   const encodeFileToBase64 = fileBlob => {
-    const reader = new FileReader(); /* reader 생성 */
-    reader.readAsDataURL(fileBlob); /* fileBlob을 base64로 인코딩 */
+    const reader = new FileReader(); // reader 생성
+    reader.readAsDataURL(fileBlob); // fileBlob을 base64로 인코딩
     return new Promise(resolve => {
       reader.onload = () => {
-        setImg(reader.result); /* reader.result 안의 문자열을 img에 세팅 */
+        setImg(reader.result); // reader.result 안의 문자열을 img에 세팅
         resolve();
       };
     });
   };
 
   useEffect(() => {
-    console.log(imgId);
-    imgId !== 0 && setDisable(false); /* 추출 버튼 활성화 */
+    imgId !== 0 && setDisable(false); // 추출 버튼 활성화
   }, [imgId]);
 
-  useEffect(() => {
-    console.log(texts);
-  }, [texts]);
+  useEffect(() => {}, [texts]);
+
+  useEffect(() => {}, [modTexts]);
+
+  const getModTexts = text => {
+    setModTexts(text);
+  };
 
   /* 파일 선택 시 */
   const onChange = event => {
@@ -49,7 +53,7 @@ function Extract() {
       setImgId(response.data.img_id);
     });
 
-    setVisible(true); /* 미리보기 활성화 */
+    setVisible(true); // 미리보기 활성화
   };
 
   const onClickInput = event => {
@@ -64,8 +68,12 @@ function Extract() {
       img === '' ? alert('이미지를 선택해주세요.') : alert('텍스트를 추출 중입니다.');
     } else {
       axios.get(`http://127.0.0.1:8000/api/extractTexts/${imgId}/`).then(response => {
-        response.data.map(texts => setTexts(textArray => [...textArray, texts.fields.src_text]));
+        response.data.map(texts =>
+          setTexts(textArray => [...textArray, { pk: texts.pk, text: texts.fields.src_text }]),
+        );
       });
+
+      console.log(texts);
 
       setMoveDisable(false);
       setBtnVisible(false);
@@ -77,7 +85,7 @@ function Extract() {
       <Header />
       <State>
         <p className={styles.text}>추출된 텍스트</p>
-        <Link to={`/translate`} state={{ imgId: imgId, srcImg: img }}>
+        <Link to={`/translate`} state={{ imgId: imgId, srcImg: img, modTexts: modTexts }}>
           <button className={styles.moveBtn} disabled={movedisable}>
             번역하러가기
           </button>
@@ -105,7 +113,7 @@ function Extract() {
             </div>
           ) : (
             <div>
-              <TextField texts={texts} />
+              <TextField texts={texts} imgId={imgId} getModTexts={getModTexts} />
             </div>
           )}
         </div>

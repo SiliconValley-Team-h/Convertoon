@@ -1,28 +1,45 @@
-import React, { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './TextField.module.css';
+import axios from 'axios';
 
-function TextField({ texts }) {
+function TextField({ texts, imgId, getModTexts }) {
   const [message, setMessage] = useState('수정하기');
   const [read, setRead] = useState(true);
-  const [modTexts, setModTexts] = useState([{ texts }]);
-  const inputEl = useRef(null);
+  const [modTexts, setModTexts] = useState([]);
+  const inputEl = useRef([]);
+
+  useEffect(() => {
+    getModTexts(modTexts);
+  }, [modTexts]);
 
   function modify() {
     setRead(read => !read);
     setMessage(message === '수정하기' ? '수정완료' : '수정하기');
-    if (read) {
-      inputEl.current.focus();
-    } else {
-      console.log(`수정 후 텍스트 : ${inputEl.current.value}`); /* texts 수정 후 post */
+    if (!read) {
+      setModTexts([]);
+      for (let i = texts[0].pk; i < inputEl.current.length; i++) {
+        setModTexts(currentArray => [...currentArray, inputEl.current[i].value]);
+      }
+
+      axios
+        .post(`http://127.0.0.1:8000/api/srcModify/${imgId}/`, {
+          text_lists: modTexts,
+          count: texts.length,
+          img_id: imgId,
+        })
+        .then(response => {
+          if (response.data === 'success') {
+            console.log('post success');
+          }
+        });
     }
   }
 
   return (
-    <div style={{ verticalAlign: 'middle' }}>
-      {texts.map(text => (
-        <textarea className={styles.textField} ref={inputEl} readOnly={read}>
-          {text}
+    <div>
+      {texts.map(data => (
+        <textarea className={styles.textField} ref={el => (inputEl.current[`${data.pk}`] = el)} readOnly={read}>
+          {data.text}
         </textarea>
       ))}
       <div>
@@ -33,9 +50,5 @@ function TextField({ texts }) {
     </div>
   );
 }
-
-TextField.propTypes = {
-  text: PropTypes.string.isRequired,
-};
 
 export default TextField;
