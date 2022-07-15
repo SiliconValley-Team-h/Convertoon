@@ -10,7 +10,7 @@ import urllib.request
 from django.core import serializers
 from rest_framework.response import Response
 from django.urls import reverse
-
+from django.conf import settings
 
 from .models import SrcImg,ExtractText,ResultImg
 from .serializers import SrcImgSerializer,ResultImgSerializer,ExtractTextSerializer
@@ -64,21 +64,24 @@ def getExtractTexts(request, img_id):
     return HttpResponse(content=data)
 
 def api_papago(request,img_id):
-    if request.method == 'POST': 
+    if request.method == 'GET': 
         firstText = ExtractText.objects.filter(src_img_id=img_id).first()
         lastText = ExtractText.objects.filter(src_img_id=img_id).last()
         trstext_lists = []
         cnt = 0
-
+        #req = json.loads(request.body.decode('utf-8'))
+        req = {'LAN' : "de"}
+        lan = req["LAN"]
         for i in range(firstText.text_id,lastText.text_id+1):
-            client_id = "BrFK4uZx3EBSvR_PfNIW" # 개발자센터에서 발급받은 Client ID 값
-            client_secret = "1teZNlNgnu" # 개발자센터에서 발급받은 Client Secret 값
+            config_secret_debug = json.loads(open(settings.SECRET_DEBUG_FILE).read())
+            client_id = config_secret_debug['NAVER']['CLIENT_ID'] # 개발자센터에서 발급받은 Client ID 값
+            client_secret = config_secret_debug['NAVER']['CLIENT_SECRET'] # 개발자센터에서 발급받은 Client Secret 값
 
             source = ExtractText.objects.get(text_id=i)
             encText = urllib.parse.quote(source.src_text)
             
 
-            data = "source=ko&target=en&text=" + encText
+            data = "source=ko&target="+lan+"&text=" + encText
             url = "https://openapi.naver.com/v1/papago/n2mt"
             request = urllib.request.Request(url)
             request.add_header("X-Naver-Client-Id",client_id)
@@ -99,7 +102,7 @@ def api_papago(request,img_id):
             'text_lists' : trstext_lists,
             'count' : cnt,
             'img_id' : img_id,
-            }, json_dumps_params = {'ensure_ascii': True})
+            }, json_dumps_params = {'ensure_ascii': False})
     else:
         return HttpResponse("error")
 
