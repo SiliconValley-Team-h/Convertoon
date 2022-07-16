@@ -19,3 +19,28 @@
   padding-top : 5px;
   vertical-align : middle;
 }
+
+.textsection {
+  background: white;
+  display: grid;
+  justify-content: center;
+  align-items: flex-start;
+  grid-template-columns: 1fr 1fr;
+}
+
+.modifyBtn {
+  margin-top: 10px;
+  background-color: #fcdd9e;
+  border: 0;
+  border-radius: 40px;
+  width: 70px;
+}
+
+.modifyBtn:disabled {
+  margin-top: 10px;
+  background-color: #c2c2c2;
+  color: black;
+  border: 0;
+  border-radius: 40px;
+  width: 70px;
+}
