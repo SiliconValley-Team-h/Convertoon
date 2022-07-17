@@ -20,7 +20,7 @@ function ZoomBtn(props) {
         style={{ position: 'absolute', height: '91vh', width: '100%', border: '1px solid black', overflow: 'scroll' }}
       >
         <img
-          src={props.srcImg}
+          src={props.img}
           alt={props.alt}
           style={{
             width: `${65 * ratio}%`,

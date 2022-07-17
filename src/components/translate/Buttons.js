@@ -1,11 +1,20 @@
 /* 번역 버튼 + 삽입 버튼 */
 import styles from './Buttons.module.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function Buttons(props) {
   const [disable, setDisable] = useState(true);
+  const [resultImg, setResultImg] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(resultImg);
+    resultImg !== '' &&
+      navigate('/save', { state: { imgId: props.imgId, srcImg: props.srcImg, resultImg: resultImg } });
+  }, [resultImg]);
+
   function transLated() {
     if (!props.trans) {
       alert('언어를 선택해주세요.');
@@ -23,16 +32,21 @@ function Buttons(props) {
     }
   }
 
+  const onClickIns = event => {
+    event.preventDefault();
+    axios.get(`http://127.0.0.1:8000/api/getInsTextImg/${props.imgId}/`).then(response => {
+      setResultImg(response.data.image);
+    });
+  };
+
   return (
     <div>
       <button className={styles.btn} onClick={transLated}>
         번역
       </button>
-      <Link to={`/save`} state={{ imgId: props.imgId, srcImg: props.srcImg }}>
-        <button className={styles.btn} disabled={disable}>
-          삽입
-        </button>
-      </Link>
+      <button className={styles.btn} disabled={disable} onClick={onClickIns}>
+        삽입
+      </button>
     </div>
   );
 }

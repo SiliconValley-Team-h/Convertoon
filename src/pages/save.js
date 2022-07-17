@@ -8,8 +8,9 @@ import ZoomBtn from '../components/save/ZoomBtn';
 import styles from './Save.module.css';
 function Save() {
   const location = useLocation();
-  const srcImg = location.state.srcImg;
   const imgId = location.state.imgId;
+  const srcImg = location.state.srcImg;
+  const resultImg = location.state.resultImg;
 
   return (
     <Fragment>
@@ -20,10 +21,10 @@ function Save() {
       </State>
       <div className={styles.container}>
         <section className={styles.viewBox}>
-          <ZoomBtn alt="원본 이미지" srcImg={srcImg} />
+          <ZoomBtn alt="원본 이미지" img={srcImg} />
         </section>
         <section className={styles.viewBox}>
-          <ZoomBtn alt="번역된 이미지" />
+          <ZoomBtn alt="번역된 이미지" img={`http://127.0.0.1:8000${resultImg}`} />
         </section>
       </div>
     </Fragment>
