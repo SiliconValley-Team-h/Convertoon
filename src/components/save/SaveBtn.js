@@ -1,26 +1,14 @@
 import { saveAs } from 'file-saver';
+import styles from 'SaveBtn.module.css';
 
 function SaveBtn({ img }) {
+  // 이미지 저장
   const onClickSave = () => {
     saveAs(img, 'result.png');
   };
 
   return (
-    <button
-      className="SaveBtn"
-      onClick={onClickSave}
-      style={{
-        color: 'black',
-        backgroundColor: '#fcdd9e',
-        border: 0,
-        width: '70px',
-        borderRadius: '40px',
-        textAlign: 'center',
-        position: 'absolute',
-        right: '20px',
-        cursor: 'pointer',
-      }}
-    >
+    <button className={styles.saveBtn} onClick={onClickSave}>
       저장
     </button>
   );

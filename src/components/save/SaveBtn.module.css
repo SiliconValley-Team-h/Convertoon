@@ -1,0 +1,11 @@
+.saveBtn {
+    color: black;
+    background-color: #fcdd9e;
+    border: 0;
+    width: 70px;
+    border-radius: 40px;
+    text-align: center;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
