@@ -22,10 +22,11 @@ function Translate() {
   const inputEl = useRef([]);
 
   useEffect(() => {
-    console.log(texts);
-  }, [texts]);
-
-  useEffect(() => {
+    const result = [];
+    for (let i = 0; i < trsTexts.length; i++) {
+      result.push(trsTexts[i].text);
+    }
+    setModTextResults(result);
     SendData();
   }, [trsTexts]);
 
@@ -35,7 +36,6 @@ function Translate() {
 
   function getData(trsTexts) {
     setTrsTexts(trsTexts);
-    alert(JSON.stringify(trsTexts));
   }
 
   function getBtnValue(btnClick) {
@@ -60,7 +60,7 @@ function Translate() {
   function SendData() {
     axios
       .post(`http://127.0.0.1:8000/api/trsModify/${imgId}/`, {
-        text_lists: modTexts,
+        text_lists: modTextResults,
         count: texts.length,
         img_id: imgId,
       })
