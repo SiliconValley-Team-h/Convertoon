@@ -15,7 +15,7 @@ function Translate() {
   const [texts, setTexts] = useState(modTexts);
   const [trsTexts, setTrsTexts] = useState([]);
   const [btnClick, setBtnClick] = useState(false);
-  const [trans, setTrans] = useState(false);
+  const [trans, setTrans] = useState(null);
   const [message, setMessage] = useState('수정하기');
   const [read, setRead] = useState(true);
   const [modTextResults, setModTextResults] = useState([]); // 수정된 텍스트
