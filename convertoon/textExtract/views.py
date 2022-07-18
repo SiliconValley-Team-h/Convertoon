@@ -24,7 +24,7 @@ import os
 
 @method_decorator(csrf_exempt, name="dispatch")
 def getOcrResults(request):
-    if(request.method=='POST'):
+    #if(request.method=='POST'):
         form = SrcImgForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
@@ -54,8 +54,8 @@ def getOcrResults(request):
                 'img_id' : latestSrcImg.img_id,
             }, json_dumps_params = {'ensure_ascii': True})
     
-    else:
-        return HttpResponse(json.dumps({"status":"Failed"}))
+    #else:
+        #return HttpResponse(json.dumps({"status":"Failed"}))
 
 
 
@@ -126,7 +126,7 @@ def getInsTextImg(reqeust, img_id):
 
 @method_decorator(csrf_exempt, name="dispatch")
 def api_papago(request,img_id):
-    if request.method == 'POST': 
+    #if request.method == 'GET': 
         firstText = ExtractText.objects.filter(src_img_id=img_id).first()
         lastText = ExtractText.objects.filter(src_img_id=img_id).last()
         trstext_lists = []
@@ -169,9 +169,9 @@ def api_papago(request,img_id):
 
 @method_decorator(csrf_exempt, name="dispatch")
 def trs_text_modify(request,img_id):
-    if request.method == "GET":
-        return redirect('text_extract:getText')
-    elif request.method == "POST":
+    #if request.method == "GET":
+        #return redirect('text_extract:getText')
+    #elif request.method == "POST":
         req = json.loads(request.body.decode('utf-8')) #front에서 데이터 전달 받음
         firstText = ExtractText.objects.filter(src_img_id=img_id).first() #img_id에 해당하는 첫번째 값 저장
         textId = firstText.text_id #firstText의 text_id 가져옴
@@ -186,9 +186,9 @@ def trs_text_modify(request,img_id):
 
 @method_decorator(csrf_exempt, name="dispatch")
 def src_text_modify(request,img_id):
-    if request.method == "GET":
-        return redirect('text_extract:getText')
-    elif request.method == "POST":
+    #if request.method == "GET":
+        #return redirect('text_extract:getText')
+    #elif request.method == "POST":
         req = json.loads(request.body.decode('utf-8')) #front에서 데이터 전달 받음
         firstText = ExtractText.objects.filter(src_img_id=img_id).first() #img_id에 해당하는 첫번째 값 저장
         textId = firstText.text_id #firstText의 text_id 가져옴

@@ -19,7 +19,7 @@ from django.core.exceptions import ImproperlyConfigured
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ROOT_DIR = os.path.dirname(BASE_DIR)
-SECRET_DEBUG_FILE = os.path.join(ROOT_DIR,'convertoon/settings_debug.json') 
+SECRET_DEBUG_FILE = os.path.join(ROOT_DIR,'convertoon/convertoon/settings_debug.json') 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
