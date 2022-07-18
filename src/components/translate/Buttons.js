@@ -11,8 +11,7 @@ function Buttons(props) {
 
   useEffect(() => {
     console.log(resultImg);
-    resultImg !== '' &&
-      navigate('/save', { state: { imgId: props.imgId, srcImg: props.srcImg, resultImg: resultImg } });
+    resultImg !== '' && navigate('/save', { state: { srcImg: props.srcImg, resultImg: resultImg } });
   }, [resultImg]);
 
   function transLated() {
