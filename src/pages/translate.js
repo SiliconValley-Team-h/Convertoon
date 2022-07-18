@@ -12,7 +12,6 @@ function Translate() {
   const imgId = location.state.imgId;
   const srcImg = location.state.srcImg;
   const modTexts = location.state.modTexts;
-  const [texts, setTexts] = useState(modTexts);
   const [trsTexts, setTrsTexts] = useState([]);
   const [btnClick, setBtnClick] = useState(false);
   const [trans, setTrans] = useState(false);
@@ -61,7 +60,7 @@ function Translate() {
     axios
       .post(`http://127.0.0.1:8000/api/trsModify/${imgId}/`, {
         text_lists: modTextResults,
-        count: texts.length,
+        count: modTextResults.length,
         img_id: imgId,
       })
       .then(response => {
@@ -81,7 +80,7 @@ function Translate() {
           </div>
           <div className={styles.textsection}>
             <span style={{ display: 'flex', textAlign: 'right' }}>
-              <TranslateField texts={texts} />
+              <TranslateField texts={modTexts} />
             </span>
             <span style={{ display: 'flex', textAlign: 'left' }}>
               <div style={{ margin: '5px' }}>
