@@ -131,6 +131,8 @@ def api_papago(request,img_id):
         lastText = ExtractText.objects.filter(src_img_id=img_id).last()
         trstext_lists = []
         cnt = 0
+        req = json.loads(request.body.decode('utf-8')) #Front가 보낸 데이터 받음
+        lan = req["LAN"] #데이터의 LAN값 변수에 저장
 
         for i in range(firstText.text_id,lastText.text_id+1):
             config_secret_debug = json.loads(open(settings.SECRET_DEBUG_FILE).read())
@@ -141,7 +143,7 @@ def api_papago(request,img_id):
             encText = urllib.parse.quote(source.src_text)
             
 
-            data = "source=ko&target=en&text=" + encText
+            data = "source=ko&target="+lan+"&text=" + encText #papago에 넘겨줌
             url = "https://openapi.naver.com/v1/papago/n2mt"
             request = urllib.request.Request(url)
             request.add_header("X-Naver-Client-Id",client_id)
@@ -162,7 +164,7 @@ def api_papago(request,img_id):
             'text_lists' : trstext_lists,
             'count' : cnt,
             'img_id' : img_id,
-            }, json_dumps_params = {'ensure_ascii': True})
+            }, json_dumps_params = {'ensure_ascii': False})
 
 
 @method_decorator(csrf_exempt, name="dispatch")
