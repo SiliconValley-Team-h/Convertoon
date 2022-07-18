@@ -17,7 +17,7 @@ function Save() {
       <Header />
       <State>
         <p className={styles.text}>번역본</p>
-        <SaveBtn></SaveBtn>
+        <SaveBtn img={`http://127.0.0.1:8000${resultImg}`}/>
       </State>
       <div className={styles.container}>
         <section className={styles.viewBox}>

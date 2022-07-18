@@ -33,11 +33,21 @@ function Extract() {
 
   useEffect(() => {
     imgId !== 0 && setDisable(false); // 추출 버튼 활성화
+    console.log(imgId);
   }, [imgId]);
 
-  useEffect(() => {}, [texts]);
+  useEffect(() => {
+    const result = [];
+    for (let i = 0; i < texts.length; i++) {
+      result.push(texts[i].text);
+    }
+    setModTexts(result);
+    sendText();
+  }, [texts]);
 
-  useEffect(() => {}, [modTexts]);
+  useEffect(() => {
+    sendText();
+  }, [modTexts]);
 
   const getModTexts = text => {
     setModTexts(text);
@@ -73,12 +83,24 @@ function Extract() {
         );
       });
 
-      console.log(texts);
-
       setMoveDisable(false);
       setBtnVisible(false);
     }
   };
+
+  function sendText() {
+    axios
+      .post(`http://127.0.0.1:8000/api/srcModify/${imgId}/`, {
+        text_lists: modTexts,
+        count: texts.length,
+        img_id: imgId,
+      })
+      .then(response => {
+        if (response.data === 'success') {
+          console.log('post success');
+        }
+      });
+  }
 
   return (
     <Fragment>

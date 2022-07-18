@@ -10,17 +10,6 @@ function TextField({ texts, imgId, getModTexts }) {
 
   useEffect(() => {
     getModTexts(modTexts);
-    axios
-      .post(`http://127.0.0.1:8000/api/srcModify/${imgId}/`, {
-        text_lists: modTexts,
-        count: texts.length,
-        img_id: imgId,
-      })
-      .then(response => {
-        if (response.data === 'success') {
-          console.log('post success');
-        }
-      });
   }, [modTexts]);
 
   function modify() {
