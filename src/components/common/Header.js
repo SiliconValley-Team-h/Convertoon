@@ -4,8 +4,8 @@ import './Header.css';
 
 function Header() {
   return (
-    <div className="Header">
-      <img src={logo} className="App-logo" alt="logo" />
+    <div className="header">
+      <img src={logo} className="app-logo" alt="logo" />
     </div>
   );
 }
