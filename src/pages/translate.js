@@ -21,16 +21,20 @@ function Translate() {
   const inputEl = useRef([]);
 
   useEffect(() => {
-    const result = [];
-    for (let i = 0; i < trsTexts.length; i++) {
-      result.push(trsTexts[i].text);
+    if (trsTexts != '') {
+      const result = [];
+      for (let i = 0; i < trsTexts.length; i++) {
+        result.push(trsTexts[i].text);
+      }
+      setModTextResults(result);
+      SendData();
     }
-    setModTextResults(result);
-    SendData();
   }, [trsTexts]);
 
   useEffect(() => {
-    SendData();
+    if (modTextResults != '') {
+      SendData();
+    }
   }, [modTextResults]);
 
   function getData(trsTexts) {

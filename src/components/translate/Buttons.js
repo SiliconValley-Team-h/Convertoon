@@ -20,15 +20,17 @@ function Buttons(props) {
       alert('언어를 선택해주세요.');
     } else {
       setDisable(false);
-      axios.post(`http://127.0.0.1:8000/api/translate/${props.imgId}/`, { LAN: `${props.trans}` }).then(response => {
-        const textArray = response.data.text_lists;
-        const result = [];
-        for (let i = 0; i < textArray.length; i++) {
-          result.push({ pk: i, text: textArray[i] });
-        }
-        props.getData(result);
-        props.getBtnValue(true);
-      });
+      axios
+        .post(`http://127.0.0.1:8000/api/translate/${props.imgId}/`, JSON.stringify({ LAN: `${props.trans}` }))
+        .then(response => {
+          const textArray = response.data.text_lists;
+          const result = [];
+          for (let i = 0; i < textArray.length; i++) {
+            result.push({ pk: i, text: textArray[i] });
+          }
+          props.getData(result);
+          props.getBtnValue(true);
+        });
     }
   }
 

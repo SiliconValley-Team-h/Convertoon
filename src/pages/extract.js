@@ -37,16 +37,20 @@ function Extract() {
   }, [imgId]);
 
   useEffect(() => {
-    const result = [];
-    for (let i = 0; i < texts.length; i++) {
-      result.push(texts[i].text);
+    if (texts != '') {
+      const result = [];
+      for (let i = 0; i < texts.length; i++) {
+        result.push(texts[i].text);
+      }
+      setModTexts(result);
+      sendText();
     }
-    setModTexts(result);
-    sendText();
   }, [texts]);
 
   useEffect(() => {
-    sendText();
+    if (modTexts != '') {
+      sendText();
+    }
   }, [modTexts]);
 
   const getModTexts = text => {
