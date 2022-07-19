@@ -23,10 +23,9 @@ function Buttons(props) {
         .post(`http://127.0.0.1:8000/api/translate/${props.imgId}/`, JSON.stringify({ LAN: `${props.trans}` }))
         .then(response => {
           const textArray = response.data.text_lists;
-          const result = [];
-          for (let i = 0; i < textArray.length; i++) {
-            result.push({ pk: i, text: textArray[i] });
-          }
+          const result = textArray.map((data, index) => {
+            return { pk: index, text: data };
+          });
           props.getData(result);
           props.getBtnValue(true);
         });

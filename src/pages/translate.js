@@ -4,41 +4,28 @@ import styles from './Translate.module.css';
 import SelectLang from '../components/translate/SelectLang';
 import Buttons from '../components/translate/Buttons';
 import Header from '../components/common/Header';
-import TranslateField from '../components/translate/TranslateField';
 import axios from 'axios';
 
 function Translate() {
   const location = useLocation();
-  const imgId = location.state.imgId;
-  const srcImg = location.state.srcImg;
-  const modTexts = location.state.modTexts;
-  const [trsTexts, setTrsTexts] = useState([]);
+  const { imgId, srcImg, modTexts } = location.state;
   const [btnClick, setBtnClick] = useState(false);
   const [trans, setTrans] = useState(null);
   const [message, setMessage] = useState('수정하기');
   const [read, setRead] = useState(true);
-  const [modTextResults, setModTextResults] = useState([]); // 수정된 텍스트
-  const inputEl = useRef([]);
+  const mounted = useRef(false);
 
-  useEffect(() => {
-    if (trsTexts != '') {
-      const result = [];
-      for (let i = 0; i < trsTexts.length; i++) {
-        result.push(trsTexts[i].text);
-      }
-      setModTextResults(result);
-      SendData();
-    }
-  }, [trsTexts]);
+  const result = modTexts.map((data, index) => {
+    return { pk: index, text: '' };
+  });
 
-  useEffect(() => {
-    if (modTextResults != '') {
-      SendData();
-    }
-  }, [modTextResults]);
+  const [modTextResults, setModTextResults] = useState(result); // 수정된 텍스트
+  const [sendText, setSendText] = useState([]);
 
-  function getData(trsTexts) {
-    setTrsTexts(trsTexts);
+  function getData(modTextResults) {
+    setModTextResults(modTextResults);
+    const result = modTextResults.map(data => data.text);
+    setSendText(result);
   }
 
   function getBtnValue(btnClick) {
@@ -53,18 +40,29 @@ function Translate() {
     setRead(read => !read);
     setMessage(message === '수정하기' ? '수정완료' : '수정하기');
     if (!read) {
-      setModTextResults([]);
-      for (let i = trsTexts[0].pk; i < inputEl.current.length; i++) {
-        setModTextResults(currentArray => [...currentArray, inputEl.current[i].value]);
-      }
+      const result = modTextResults.map(data => data.text);
+      setSendText(result);
     }
+  }
+
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      SendData();
+      console.log(sendText);
+    }
+  }, [sendText]);
+
+  function modifyText(e, i) {
+    setModTextResults(modTextResults.map((item, index) => (index === i ? { pk: index, text: e.target.value } : item)));
   }
 
   function SendData() {
     axios
       .post(`http://127.0.0.1:8000/api/trsModify/${imgId}/`, {
-        text_lists: modTextResults,
-        count: modTextResults.length,
+        text_lists: sendText,
+        count: sendText.length,
         img_id: imgId,
       })
       .then(response => {
@@ -84,48 +82,30 @@ function Translate() {
           </div>
           <div className={styles.textsection}>
             <span style={{ display: 'flex', textAlign: 'right' }}>
-              <TranslateField texts={modTexts} />
+              <div style={{ margin: '5px' }}>
+                {modTexts.map(text => (
+                  <textarea
+                    style={{ resize: 'none', width: 400 + 'px', height: 100 + 'px', border: 1 + 'px solid black' }}
+                    readOnly={true}
+                    disabled={true}
+                    value={text}
+                  ></textarea>
+                ))}
+                {/*원본 텍스트*/}
+              </div>
             </span>
             <span style={{ display: 'flex', textAlign: 'left' }}>
               <div style={{ margin: '5px' }}>
-                {/*
-                {btnClick ? (
-                  <div>
-                    {trsTexts.map(text => (
-                      <textarea
-                        style={{ resize: 'none', width: 400 + 'px', height: 100 + 'px', border: 1 + 'px solid black' }}
-                        readOnly={read}
-                        disabled={read}
-                        ref={inputEl}
-                      >
-                        {text}
-                      </textarea>
-                    ))}
-                  </div>
-                ) : (
-                  <div>
-                    {texts.map(text => (
-                      <textarea
-                        style={{ resize: 'none', width: 400 + 'px', height: 100 + 'px', border: 1 + 'px solid black' }}
-                      ></textarea>
-                    ))}
-                  </div>
-                )}
-                */}
-                {btnClick && (
-                  <div>
-                    {trsTexts.map(data => (
-                      <textarea
-                        style={{ resize: 'none', width: 400 + 'px', height: 100 + 'px', border: 1 + 'px solid black' }}
-                        readOnly={read}
-                        disabled={read}
-                        ref={el => (inputEl.current[`${data.pk}`] = el)}
-                      >
-                        {data.text}
-                      </textarea>
-                    ))}
-                  </div>
-                )}
+                {modTextResults.map(data => (
+                  <textarea
+                    style={{ resize: 'none', width: 400 + 'px', height: 100 + 'px', border: 1 + 'px solid black' }}
+                    readOnly={read}
+                    disabled={read}
+                    key={data.pk}
+                    value={data.text}
+                    onChange={e => modifyText(e, data.pk)}
+                  ></textarea>
+                ))}
               </div>
             </span>
           </div>

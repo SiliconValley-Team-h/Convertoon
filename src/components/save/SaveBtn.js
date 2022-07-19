@@ -1,5 +1,5 @@
 import { saveAs } from 'file-saver';
-import styles from 'SaveBtn.module.css';
+import styles from './SaveBtn.module.css';
 
 function SaveBtn({ img }) {
   // 이미지 저장
