@@ -1,7 +1,6 @@
 @import "./State";
 
-.convertContainer {
+.lanSelector {
     @extend .container;
-    grid-template-columns: 1fr 1fr;
     height:30px;
 }
