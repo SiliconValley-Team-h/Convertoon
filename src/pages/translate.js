@@ -1,10 +1,11 @@
-import { React, Fragment, useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import styles from './Translate.module.css';
-import SelectLang from '../components/translate/SelectLang';
+import { Fragment, React, useEffect, useRef, useState } from 'react';
+
 import Buttons from '../components/translate/Buttons';
 import Header from '../components/common/Header';
+import SelectLang from '../components/translate/SelectLang';
 import axios from 'axios';
+import styles from './Translate.module.css';
+import { useLocation } from 'react-router-dom';
 
 function Translate() {
   const location = useLocation();
@@ -60,7 +61,7 @@ function Translate() {
 
   function SendData() {
     axios
-      .post(`http://127.0.0.1:8000/api/trsModify/${imgId}/`, {
+      .post(`http://convertoon.shop/api/trsModify/${imgId}/`, {
         text_lists: sendText,
         count: sendText.length,
         img_id: imgId,

@@ -1,8 +1,10 @@
 /* 번역 버튼 + 삽입 버튼 */
+
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
 import styles from './Buttons.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 function Buttons(props) {
   const [disable, setDisable] = useState(true);
@@ -20,7 +22,7 @@ function Buttons(props) {
     } else {
       setDisable(false);
       axios
-        .post(`http://127.0.0.1:8000/api/translate/${props.imgId}/`, JSON.stringify({ LAN: `${props.trans}` }))
+        .post(`http://convertoon.shop/api/translate/${props.imgId}/`, JSON.stringify({ LAN: `${props.trans}` }))
         .then(response => {
           const textArray = response.data.text_lists;
           const result = textArray.map((data, index) => {
@@ -34,7 +36,7 @@ function Buttons(props) {
 
   const onClickIns = event => {
     event.preventDefault();
-    axios.get(`http://127.0.0.1:8000/api/getInsTextImg/${props.imgId}/`).then(response => {
+    axios.get(`http://convertoon.shop/api/getInsTextImg/${props.imgId}/`).then(response => {
       setResultImg(response.data.image);
     });
   };

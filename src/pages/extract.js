@@ -1,11 +1,12 @@
-import { Fragment, useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Fragment, useEffect, useRef, useState } from 'react';
+
 import Header from '../components/common/Header';
-import State from '../components/common/State';
 import ImgView from '../components/extract/ImgView';
-import TextView from '../components/extract/TextView';
+import { Link } from 'react-router-dom';
+import State from '../components/common/State';
 import TextField from '../components/extract/TextField';
+import TextView from '../components/extract/TextView';
+import axios from 'axios';
 import styles from './Extract.module.css';
 
 function Extract() {
@@ -63,7 +64,7 @@ function Extract() {
     encodeFileToBase64(event.target.files[0]);
 
     formData.append('image', event.target.files[0]);
-    axios.post('http://127.0.0.1:8000/api/results/', formData).then(response => {
+    axios.post('http://convertoon.shop/api/results/', formData).then(response => {
       setImgId(response.data.img_id);
     });
 
@@ -81,7 +82,7 @@ function Extract() {
     if (imgId === 0) {
       img === '' ? alert('이미지를 선택해주세요.') : alert('텍스트를 추출 중입니다.');
     } else {
-      axios.get(`http://127.0.0.1:8000/api/extractTexts/${imgId}/`).then(response => {
+      axios.get(`http://convertoon.shop/api/extractTexts/${imgId}/`).then(response => {
         response.data.map(texts =>
           setTexts(textArray => [...textArray, { pk: texts.pk, text: texts.fields.src_text }]),
         );
@@ -94,7 +95,7 @@ function Extract() {
 
   function sendText() {
     axios
-      .post(`http://127.0.0.1:8000/api/srcModify/${imgId}/`, {
+      .post(`http://convertoon.shop/api/srcModify/${imgId}/`, {
         text_lists: modTexts,
         count: texts.length,
         img_id: imgId,
