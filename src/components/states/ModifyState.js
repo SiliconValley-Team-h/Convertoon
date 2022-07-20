@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/common/ModifyState.scss';
+import '../../styles/common/_ModifyState.scss';
 
 /*ModifyText 페이지에서 사용할 State*/
 function ModifyState() {

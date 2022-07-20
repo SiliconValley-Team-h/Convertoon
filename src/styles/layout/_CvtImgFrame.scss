@@ -1,0 +1,6 @@
+@import './_imgFrame.scss';
+
+.cvtimgFrames {
+    @extend .imgFrames;
+    grid-template-columns: 1fr 1fr;
+}
