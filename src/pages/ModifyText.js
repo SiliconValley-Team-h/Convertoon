@@ -17,9 +17,7 @@ function ModifyText() {
       <State />
       <div className="modimgFrames">
         <section className="imgFrame"></section> {/*원본이미지를 담을 section*/}
-        <section className="imgFrame">
-          <ExtTextField />
-        </section>
+        <section className="imgFrame"></section>
         {/*추출된 텍스트를 담을 section*/}
         <section className="imgFrame"></section> {/*번역된 텍스트를 담을 section*/}
       </div>
