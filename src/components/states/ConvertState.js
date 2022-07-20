@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/common/_ConvertState.scss';
+import '../../styles/states/_ConvertState.scss';
 
 /*Convertoon 페이지에서 사용할 State*/
 function State() {

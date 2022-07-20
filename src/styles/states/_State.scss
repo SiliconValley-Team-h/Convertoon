@@ -1,3 +1,5 @@
+@import "../colors/Color";
+
 .container {
     display: grid;
     gap: 0;
@@ -6,7 +8,7 @@
 
 .viewBox {
     background: white;
-    border: 1px solid #c2c2c2;
+    border: 1px solid $light-gray;
     text-align: center;
     display: grid;
     justify-content: center;
