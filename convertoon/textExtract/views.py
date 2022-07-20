@@ -1,3 +1,4 @@
+from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 
 from textExtract.forms import SrcImgForm
@@ -33,7 +34,7 @@ def getOcrResults(request):
             latestSrcImg = SrcImg.objects.last()
             
             image = '.'+latestSrcImg.image.url
-            print("success")
+            
             reader = Reader(["ko"], gpu=False)
             results = reader.readtext(image)
             text_lists = []
@@ -83,7 +84,7 @@ def getExtractTexts(request, img_id):
 
 def getInsTextImg(reqeust, img_id):
     querySet = ExtractText.objects.filter(src_img_id=img_id)
-    listTextExtract = serializers.serialize("json", querySet)
+    listTextExtract = serializers.serialize("json", querySet) 
 
     srcImg = SrcImg.objects.get(img_id=img_id)
     image = Image.open("."+srcImg.image.url)
@@ -122,13 +123,17 @@ def getInsTextImg(reqeust, img_id):
 
     serializer = ResultImgSerializer(resultImg)
 
+    for extractText in querySet:
+        extractText.res_img_id = resultImg
+        extractText.save()
+
     return JsonResponse(serializer.data)
 
 
 
 @method_decorator(csrf_exempt, name="dispatch")
-def api_papago(request,img_id):
-    if request.method == 'POST': 
+def api_papago(request,img_id): 
+    if(request.method=='POST'):
         firstText = ExtractText.objects.filter(src_img_id=img_id).first()
         lastText = ExtractText.objects.filter(src_img_id=img_id).last()
         trstext_lists = []
@@ -171,9 +176,7 @@ def api_papago(request,img_id):
 
 @method_decorator(csrf_exempt, name="dispatch")
 def trs_text_modify(request,img_id):
-    if request.method == "GET":
-        return redirect('text_extract:getText')
-    elif request.method == "POST":
+    if request.method == "POST":
         req = json.loads(request.body.decode('utf-8')) #front에서 데이터 전달 받음
         firstText = ExtractText.objects.filter(src_img_id=img_id).first() #img_id에 해당하는 첫번째 값 저장
         textId = firstText.text_id #firstText의 text_id 가져옴
@@ -183,22 +186,22 @@ def trs_text_modify(request,img_id):
             targetText.trs_text = value #값 수정
             targetText.save() #수정한 값 저장
             textId += 1 # 다음 text로 이동
+    
+        return redirect('text_extract:insert', img_id)
 
-        return HttpResponse("success")
+    
 
 @method_decorator(csrf_exempt, name="dispatch")
 def src_text_modify(request,img_id):
-    if request.method == "GET":
-        return redirect('text_extract:getText')
-    elif request.method == "POST":
+    if request.method == "POST":
         req = json.loads(request.body.decode('utf-8')) #front에서 데이터 전달 받음
         firstText = ExtractText.objects.filter(src_img_id=img_id).first() #img_id에 해당하는 첫번째 값 저장
         textId = firstText.text_id #firstText의 text_id 가져옴
-        
+
         for value in req['text_lists']: #text_lists값 하나씩 넣으며 반복
             targetText = ExtractText.objects.get(text_id=textId)
             targetText.src_text = value
             targetText.save()
             textId += 1
-
-        return HttpResponse("success")
+        
+        return HTTPResponse("SUCCESS")
