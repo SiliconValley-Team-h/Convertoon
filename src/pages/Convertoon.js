@@ -1,5 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-function Convertoon() {}
+import Header from '../components/common/Header';
+import State from '../components/states/ConvertState';
+
+function Convertoon() {
+  return (
+    <Fragment>
+      <Header />
+      <State />
+    </Fragment>
+  );
+}
 
 export default Convertoon;
