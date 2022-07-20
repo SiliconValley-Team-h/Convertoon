@@ -4,6 +4,8 @@ import Header from '../components/common/Header';
 import State from '../components/states/ConvertState';
 
 import '../styles/layout/_CvtImgFrame.scss';
+import '../styles/common/_Buttons.scss';
+
 function Convertoon() {
   return (
     <Fragment>
