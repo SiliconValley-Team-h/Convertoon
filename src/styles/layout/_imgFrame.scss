@@ -10,10 +10,9 @@
 .imgFrame {
     background: white;
     border: 1px solid  $light-gray;
-    text-align: center;
+    display: grid;
     grid-template-columns: 1fr;
-    display: flex;
-    position:relative;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-start;
+    text-align: center;
 }

@@ -1,6 +1,30 @@
-@import './_imgFrame.scss';
+@import './ImgFrame';
 
+// convertoon 페이지의 전체적인 프레임
 .cvtimgFrames {
     @extend .imgFrames;
     grid-template-columns: 1fr 1fr;
+}
+
+// convertoon 페이지의 previewFrame + btnFrame
+.cvtimgFrame {
+    @extend .imgFrame;
+    grid-template-rows: 88% 12%;
+}
+
+// convertoon 페이지의 이미지 미리보기 프레임
+.previewFrame {
+    height: 80vh;
+    width: 49.8%;
+    overflow: scroll;
+    display: flex;
+    position:absolute;
+}
+
+// convertoon 페이지의 버튼 프레임
+.btnFrame {
+    height: 100%;
+    width:100%;
+    justify-content: center;
+    align-items: flex-start;
 }

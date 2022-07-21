@@ -1,19 +1,33 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 import Header from '../components/common/Header';
-import State from '../components/states/ConvertState';
+import ConvertState from '../components/states/ConvertState';
+import LanState from '../components/states/LanState';
+import FileBtn from '../components/buttons/FileBtn';
+import ResultBtns from '../components/buttons/ResultBtns';
+import PreviewFrame from '../components/layouts/PreviewFrame';
 
 import '../styles/layout/_CvtImgFrame.scss';
+import '../styles/layout/_ImgFrame.scss';
 import '../styles/common/_Buttons.scss';
 
 function Convertoon() {
   return (
     <Fragment>
       <Header />
-      <State />
+      <LanState />
+      <ConvertState />
       <div className="cvtimgFrames">
-        <section className="imgFrame"></section> {/*원본이미지를 담을 section*/}
-        <section className="imgFrame"></section>
+        <section className="cvtimgFrame">
+          {/*원본이미지를 담을 section*/}
+          <PreviewFrame />
+          <FileBtn />
+        </section>
+        <section className="cvtimgFrame">
+          {/*번역이미지를 담을 section*/}
+          <PreviewFrame />
+          <ResultBtns />
+        </section>
       </div>
     </Fragment>
   );

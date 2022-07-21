@@ -1,6 +1,11 @@
 @import "./State";
 
+// convertoon 페이지의 언어 선택 state
 .lanSelector {
-    @extend .container;
+    display: flex;
     height:30px;
+    border: 1px solid $light-gray;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
