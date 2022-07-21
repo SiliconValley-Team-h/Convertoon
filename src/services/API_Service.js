@@ -35,3 +35,5 @@ class API_Service {
     return axios.post(API_BASE_URL + `translate/${img_id}/`);
   }
 }
+
+export default new API_Service();

@@ -1,0 +1,21 @@
+.Section {
+    width: 100%;
+}
+
+.ImgSection {
+    @extend .Section;
+    height: 500px;
+    border: 1px solid black;
+    overflow: scroll;
+}
+
+.TextSection {
+    @extend .Section;
+    height: 500px;
+    overflow: scroll;
+}
+
+.BtnSection {
+    @extend .Section;
+    height: 100px;
+}
