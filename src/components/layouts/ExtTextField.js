@@ -1,22 +1,29 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
+import { ImgInfoContext } from '../../store/ImgInfo';
+
 import '../../styles/layout/_TextArea.scss';
 
-import { setSrcText } from '../../services/API_Service';
-function ExtTextField(texts, imgId) {
-  const [modTextResults, setModTextResults] = useState(texts); // 수정된 텍스트
-  const [sendText, setSendText] = useState([]); //전송할 텍스트
+function ExtTextField(props) {
+  const { extrTexts, setExtrTexts, transTexts, setTransTexts } = useContext(ImgInfoContext);
+
+  const result = props.texts.map((data, index) => {
+    return { pk: index, text: data };
+  });
+
+  const [modTextResults, setModTextResults] = useState(result); // 수정된 텍스트
 
   function modifyText(e, i) {
     setModTextResults(modTextResults.map((item, index) => (index === i ? { pk: index, text: e.target.value } : item)));
-  }
-
-  function transLated() {
-    setSrcText(imgId);
+    if (props.state === 'extr') {
+      setExtrTexts(extrTexts.map((item, index) => (index === i ? e.target.value : item)));
+    } else {
+      setTransTexts(transTexts.map((item, index) => (index === i ? e.target.value : item)));
+    }
   }
 
   return (
     <Fragment>
-      {texts.map(data => (
+      {modTextResults.map(data => (
         <textarea
           className="TextArea"
           key={data.pk}
@@ -24,7 +31,6 @@ function ExtTextField(texts, imgId) {
           onChange={e => modifyText(e, data.pk)}
         ></textarea>
       ))}
-      <button onClick={transLated}>번역</button>
     </Fragment>
   );
 }

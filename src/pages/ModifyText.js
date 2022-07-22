@@ -1,28 +1,30 @@
-import React, { Fragment, useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { ImgInfoContext } from '../store/ImgInfo';
 
 import Header from '../components/common/Header';
 import State from '../components/states/ModifyState';
 import ExtTextField from '../components/layouts/ExtTextField';
-import TransBtn from '../components/buttons/TransBtn';
+import ShowTransBtn from '../components/buttons/ShowTransBtn';
 import ShowResultBtn from '../components/buttons/ShowResultBtn';
-
-import { getAllText } from '../services/API_Service';
 
 import '../styles/layout/_ModImgFrame.scss';
 import '../styles/layout/_TextFrame.scss';
 import '../styles/layout/_ImgView.scss';
 
 function ModifyText() {
-  const location = useLocation();
-  const { imgId, srcImg, srcTexts, trsTexts } = location.state;
+  const { srcImg, extrTexts, transTexts } = useContext(ImgInfoContext);
+
+  useEffect(() => {
+    console.log(extrTexts);
+    console.log(transTexts);
+  }, []);
 
   function SrcImg() {
     return (
       <section className="imgFrame">
         {/*원본이미지를 담을 section*/}
         <div className="ImgSection">
-          <img className="SrcimgView" alt="원본이미지"></img>
+          <img className="SrcimgView" src={srcImg} alt="원본이미지"></img>
         </div>
       </section>
     );
@@ -33,10 +35,10 @@ function ModifyText() {
       <section className="imgFrame">
         {/*추출된 텍스트를 담을 section*/}
         <div className="TextSection">
-          <ExtTextField texts={srcTexts} />
+          <ExtTextField texts={extrTexts} state="extr" />
         </div>
         <div className="BtnSection">
-          <TransBtn />
+          <ShowTransBtn />
         </div>
       </section>
     );
@@ -47,7 +49,7 @@ function ModifyText() {
       <section className="imgFrame">
         {/*번역된 텍스트를 담을 section*/}
         <div className="TextSection">
-          <ExtTextField texts={trsTexts} />
+          <ExtTextField texts={transTexts} state="trans" />
         </div>
         <div className="BtnSection">
           <ShowResultBtn />
