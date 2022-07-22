@@ -22,8 +22,8 @@ export function getResultImg(img_id) {
   return axios.get(API_BASE_URL + `getInsTextImg/${img_id}/`);
 }
 
-export function setSrcText(img_id) {
-  return axios.post(API_BASE_URL + `srcModify/${img_id}/`);
+export function setSrcText(img_id, srcModTexts, lang) {
+  return axios.post(API_BASE_URL + `srcModify/${img_id}/`, { LAN: lang });
 }
 
 export function setTrsText(img_id, trsModTexts, cnt) {

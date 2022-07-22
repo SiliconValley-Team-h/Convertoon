@@ -1,21 +1,30 @@
-import React, { Fragment, useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import React, { Fragment, useState } from 'react';
+import '../../styles/layout/_TextArea.scss';
 
-function ExtTextField(props) {
-  const [modTextResults, setModTextResults] = useState([]);
-  const [sendText, setSendText] = useState([]);
-  const mounted = useRef(null);
+import { setSrcText } from '../../services/API_Service';
+function ExtTextField(texts, imgId) {
+  const [modTextResults, setModTextResults] = useState(texts); // 수정된 텍스트
+  const [sendText, setSendText] = useState([]); //전송할 텍스트
 
-  function modExtText(e, i) {
+  function modifyText(e, i) {
     setModTextResults(modTextResults.map((item, index) => (index === i ? { pk: index, text: e.target.value } : item)));
+  }
+
+  function transLated() {
+    setSrcText(imgId);
   }
 
   return (
     <Fragment>
-      {props.texts.map(data => (
-        <textarea key={data.pk} value={data.text} onChange={e => modExtText(e, data.pk)}></textarea>
+      {texts.map(data => (
+        <textarea
+          className="TextArea"
+          key={data.pk}
+          value={data.text}
+          onChange={e => modifyText(e, data.pk)}
+        ></textarea>
       ))}
-      <button>번역</button>
+      <button onClick={transLated}>번역</button>
     </Fragment>
   );
 }
