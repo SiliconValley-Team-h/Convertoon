@@ -1,7 +1,20 @@
+import { useContext, useEffect } from 'react';
+import { ImgInfoContext } from '../../store/ImgInfo';
+
 /* convertoon 페이지의 언어 선택 드롭다운 */
 function LanDropdown() {
+  const { lan, setLan } = useContext(ImgInfoContext);
+
+  useEffect(() => {}, [lan]);
+
+  function onChangeLan(event) {
+    if (event.target.value !== 'none') {
+      setLan(event.target.value);
+    }
+  }
+
   return (
-    <select defaultValue={'none'}>
+    <select defaultValue={'none'} onChange={onChangeLan}>
       <option value="none">언어 선택</option>
       <option value="en">영어</option>
       <option value="ja">일본어</option>

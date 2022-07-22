@@ -1,5 +1,6 @@
 import arrow from '../images/arrow.png';
 import LanDropdown from '../buttons/LanDropdown';
+import TransBtn from '../buttons/TransBtn';
 
 import '../../styles/common/_Buttons.scss';
 import '../../styles/common/_Images.scss';
@@ -12,7 +13,7 @@ function LanState() {
       <span>한국어</span>
       <img className="arrow" src={arrow} alt="arrow" />
       <LanDropdown />
-      <button className="transBtn">번역</button>
+      <TransBtn />
     </section>
   );
 }

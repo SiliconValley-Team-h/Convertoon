@@ -1,4 +1,5 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
+import { ImgInfoContext } from '../store/ImgInfo';
 
 import Header from '../components/common/Header';
 import ConvertState from '../components/states/ConvertState';
@@ -12,6 +13,8 @@ import '../styles/layout/_ImgFrame.scss';
 import '../styles/common/_Buttons.scss';
 
 function Convertoon() {
+  const { srcImg, resultImg } = useContext(ImgInfoContext);
+
   return (
     <Fragment>
       <Header />
@@ -20,12 +23,12 @@ function Convertoon() {
       <div className="cvtimgFrames">
         <section className="cvtimgFrame">
           {/*원본이미지를 담을 section*/}
-          <PreviewFrame />
+          <PreviewFrame img={srcImg} alt={'srcImgPreview'} />
           <FileBtn />
         </section>
         <section className="cvtimgFrame">
           {/*번역이미지를 담을 section*/}
-          <PreviewFrame />
+          <PreviewFrame img={resultImg} alt={'resultImgPreview'} />
           <ResultBtns />
         </section>
       </div>
