@@ -18,15 +18,15 @@ function ResultBtns() {
 
   /* 이미지 저장 */
   function onClickSave() {
-    resultImg !== '' && saveAs(resultImg, 'result.png');
+    saveAs(resultImg, 'result.png');
   }
 
   return (
     <div className="btnFrame">
-      <button className="resultBtns" onClick={onClickModify}>
+      <button className="resultBtns" disabled={resultImg === '' ? true : false} onClick={onClickModify}>
         수정
       </button>
-      <button className="resultBtns" onClick={onClickSave}>
+      <button className="resultBtns" disabled={resultImg === '' ? true : false} onClick={onClickSave}>
         저장
       </button>
     </div>
