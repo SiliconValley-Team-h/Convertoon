@@ -33,7 +33,7 @@ function ExtTextField(props) {
     } else {
       /*update*/
       setTransTexts(sendText); /*번역된 텍스트 수정*/
-      SendData(); /*번역 API 호출*/
+      SendData(); /*API 호출*/
     }
   }, [sendText]);
 
@@ -46,13 +46,17 @@ function ExtTextField(props) {
   }, [transTexts]);
 
   function BtnClicked() {
+    /*결과보기 버튼 클릭*/
     const result = modTextResults.map(data => data.text);
-    setSendText(result);
+    setSendText(result); /*수정된 텍스트로 sendText를 수정*/
   }
 
   function SendData() {
-    setTrsText(imgId, sendText);
+    /*API호출*/
+    setTrsText(imgId, sendText); /*수정된 번역 텍스트를 서버로 보내기*/
     getResultImg(imgId).then(response => {
+      /*번역 텍스트를 이용해 결과 이미지 가져오기*/
+      /*response = 번역된 이미지*/
       setResultImg(BASE_URL + response.data.image);
     });
     navigate('/convertoon');
