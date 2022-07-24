@@ -1,4 +1,3 @@
-from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 
 from textExtract.forms import SrcImgForm
@@ -204,4 +203,4 @@ def src_text_modify(request,img_id):
             targetText.save()
             textId += 1
         
-        return HTTPResponse("SUCCESS")
+        return HttpResponse("SUCCESS")
