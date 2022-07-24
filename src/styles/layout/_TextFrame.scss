@@ -4,8 +4,7 @@
 
 .ImgSection {
     @extend .Section;
-    height: 75vh;
-    border: 1px solid black;
+    height: 85vh;
     overflow: scroll;
 }
 
@@ -17,5 +16,5 @@
 
 .BtnSection {
     @extend .Section;
-    height: 75vh;
+    height: 100%;
 }
