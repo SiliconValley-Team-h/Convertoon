@@ -17,7 +17,7 @@ function LanDropdown() {
   }
 
   return (
-    <select className="lanDropDown" defaultValue={'none'} onChange={onChangeLan}>
+    <select className="lanDropDown" defaultValue={lan === null ? 'none' : lan} onChange={onChangeLan}>
       <option value="none" disabled={true}>
         언어 선택
       </option>
