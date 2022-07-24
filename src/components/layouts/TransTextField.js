@@ -1,10 +1,14 @@
 import React, { Fragment, useState, useEffect, useContext, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { ImgInfoContext } from '../../store/ImgInfo';
-import { setSrcText, getTransText } from '../../services/API_Service';
+import { setTrsText, getResultImg } from '../../services/API_Service';
 import '../../styles/layout/_TextArea.scss';
+import axios from 'axios';
 
 function ExtTextField(props) {
-  const { imgId, extrTexts, setExtrTexts, transTexts, setTransTexts, lan } = useContext(ImgInfoContext);
+  const { BASE_URL, imgId, transTexts, setTransTexts, setResultImg } = useContext(ImgInfoContext);
+  const navigate = useNavigate();
 
   const result = props.texts.map((data, index) => {
     return { pk: index, text: data };
@@ -22,10 +26,20 @@ function ExtTextField(props) {
     if (!mounted.current) {
       mounted.current = true;
     } else {
-      setExtrTexts(sendText);
+      setTransTexts(sendText);
       SendData();
     }
   }, [sendText]);
+
+  useEffect(() => {
+    if (transTexts !== '') {
+      setModTextResults(
+        transTexts.map((data, index) => {
+          return { pk: index, text: data };
+        }),
+      );
+    }
+  }, [transTexts]);
 
   function BtnClicked() {
     const result = modTextResults.map(data => data.text);
@@ -33,15 +47,12 @@ function ExtTextField(props) {
   }
 
   function SendData() {
-    setSrcText(imgId, sendText);
-    getTransText(imgId, lan).then(response => {
-      const result = response.data.text_lists.map(data => {
-        return data;
-      });
-      setTransTexts(result);
+    setTrsText(imgId, sendText);
+    getResultImg(imgId).then(response => {
+      setResultImg(BASE_URL + response.data.image);
     });
+    navigate('/convertoon');
   }
-
   return (
     <Fragment>
       <div className="TextSection">
@@ -56,7 +67,7 @@ function ExtTextField(props) {
       </div>
       <div className="BtnSection">
         <button className="commonBtn" onClick={BtnClicked}>
-          번역
+          결과보기
         </button>
       </div>
     </Fragment>

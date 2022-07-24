@@ -4,8 +4,7 @@ import { ImgInfoContext } from '../store/ImgInfo';
 import Header from '../components/common/Header';
 import State from '../components/states/ModifyState';
 import ExtTextField from '../components/layouts/ExtTextField';
-import ShowTransBtn from '../components/buttons/ShowTransBtn';
-import ShowResultBtn from '../components/buttons/ShowResultBtn';
+import TransTextField from '../components/layouts/TransTextField';
 
 import '../styles/layout/_ModImgFrame.scss';
 import '../styles/layout/_TextFrame.scss';
@@ -13,11 +12,6 @@ import '../styles/layout/_ImgView.scss';
 
 function ModifyText() {
   const { srcImg, extrTexts, transTexts } = useContext(ImgInfoContext);
-
-  useEffect(() => {
-    console.log(extrTexts);
-    console.log(transTexts);
-  }, []);
 
   function SrcImg() {
     return (
@@ -34,11 +28,8 @@ function ModifyText() {
     return (
       <section className="imgFrame">
         {/*추출된 텍스트를 담을 section*/}
-        <div className="TextSection">
-          <ExtTextField texts={extrTexts} state="extr" />
-        </div>
-        <div className="BtnSection">
-          <ShowTransBtn />
+        <div>
+          <ExtTextField texts={extrTexts} />
         </div>
       </section>
     );
@@ -48,11 +39,8 @@ function ModifyText() {
     return (
       <section className="imgFrame">
         {/*번역된 텍스트를 담을 section*/}
-        <div className="TextSection">
-          <ExtTextField texts={transTexts} state="trans" />
-        </div>
-        <div className="BtnSection">
-          <ShowResultBtn />
+        <div>
+          <TransTextField texts={transTexts} />
         </div>
       </section>
     );

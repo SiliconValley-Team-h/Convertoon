@@ -28,14 +28,12 @@ export function getResultImg(img_id) {
   return axios.get(API_BASE_URL + `/getInsTextImg/${img_id}/`);
 }
 
-export async function setSrcText(img_id, srcModTexts, lang) {
+export function setSrcText(img_id, srcModTexts) {
   /*추출된 텍스트 수정*/
-  const url = API_BASE_URL + `srcModify/${img_id}/`;
-  await axios.post(url, { text_lists: srcModTexts });
-  axios.post(url, { LAN: lang });
+  return axios.post(API_BASE_URL + `/srcModify/${img_id}/`, { text_lists: srcModTexts });
 }
 
 export function setTrsText(img_id, trsModTexts) {
   /*번역된 텍스트 수정*/
-  return axios.post(API_BASE_URL + `/trsModify/${img_id}/`, { text_lists: trsModTexts });
+  return axios.post(API_BASE_URL + `/trsModify/${img_id}/`, JSON.stringify({ text_lists: trsModTexts }));
 }
