@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { ImgInfoContext } from '../store/ImgInfo';
 
 import Header from '../components/common/Header';

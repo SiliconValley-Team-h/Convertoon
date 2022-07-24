@@ -4,18 +4,18 @@
 
 .ImgSection {
     @extend .Section;
-    height: 500px;
+    height: 75vh;
     border: 1px solid black;
     overflow: scroll;
 }
 
 .TextSection {
     @extend .Section;
-    height: 500px;
+    height: 75vh;
     overflow: scroll;
 }
 
 .BtnSection {
     @extend .Section;
-    height: 100px;
+    height: 75vh;
 }
