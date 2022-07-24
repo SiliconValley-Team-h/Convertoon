@@ -29,6 +29,7 @@ function ExtTextField(props) {
       mounted.current = true;
     } else {
       /*update*/
+      alert(sendText);
       setExtrTexts(sendText); /*원본 텍스트 수정*/
       SendData(); /*번역 API 호출*/
     }

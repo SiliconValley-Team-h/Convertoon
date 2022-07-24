@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ResponseData } from '../../utils/ResponseData';
 import { ImgInfoContext } from '../../store/ImgInfo';
 import { setTrsText, getResultImg } from '../../services/API_Service';
 import '../../styles/layout/_TextArea.scss';
@@ -53,13 +54,10 @@ function ExtTextField(props) {
 
   function SendData() {
     /*API호출*/
-    setTrsText(imgId, sendText); /*수정된 번역 텍스트를 서버로 보내기*/
-    getResultImg(imgId).then(response => {
-      /*번역 텍스트를 이용해 결과 이미지 가져오기*/
-      /*response = 번역된 이미지*/
+    setTrsText(imgId, sendText).then(response => {
       setResultImg(BASE_URL + response.data.image);
-    });
-    navigate('/convertoon');
+      navigate('/convertoon');
+    }); /*수정된 번역 텍스트를 서버로 보내기*/
   }
   return (
     <Fragment>
