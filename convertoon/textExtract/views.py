@@ -62,22 +62,23 @@ def getOcrResults(request):
 
 
 
-
+"""
 def getSrcImg(request, img_id):
     srcImg = SrcImg.objects.get(img_id=img_id)
     serializer = SrcImgSerializer(srcImg)
 
     return JsonResponse(serializer.data)
+"""
 
 
 
-
+"""
 def getExtractTexts(request, img_id):
     querySet = ExtractText.objects.filter(src_img_id=img_id)
     data = serializers.serialize("json", querySet)
     
     return HttpResponse(content=data)
-    
+"""    
 
 
 
