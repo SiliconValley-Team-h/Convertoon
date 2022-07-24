@@ -9,8 +9,8 @@ import '../../styles/states/_LanState.scss';
 /*ModifyText 페이지에서 사용할 언어 선택 State*/
 function LanState() {
   return (
-    <section className="lanSelector">
-      <span>한국어</span>
+    <section className="lanState">
+      <span className="lanText">한국어</span>
       <img className="arrow" src={arrow} alt="arrow" />
       <LanDropdown />
       <TransBtn />

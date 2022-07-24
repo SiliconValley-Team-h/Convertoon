@@ -3,19 +3,16 @@
 .imgFrames {
     display: grid;
     gap: 0;
-    height: 91vh;
+    height:85vh;
     border-collapse: collapse;
 
     .imgFrame {
-        width:100%;
         background: white;
         border: 1px solid  $light-gray;
         display: grid;
+        position:relative;
         grid-template-columns: 1fr;
-        justify-content: center;
         align-items: flex-start;
         text-align: center;
     }
 }
-
-

@@ -1,7 +1,15 @@
 @import "./State";
+@import "../colors/Color";
 
-// convertoon 페이지의 언어 선택 state
-.lanSelector {
+.lanText{
+    position:absolute;
+    left:45%;
+    font-size: 14px;
+    color:$dark-gray;
+}
+
+// convertoon 페이지의 언어 선택 state + 번역 버튼
+.lanState {
     display: flex;
     height:30px;
     border: 1px solid $light-gray;
