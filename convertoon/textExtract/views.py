@@ -82,10 +82,10 @@ def getExtractTexts(request, img_id):
 
 
 
-def getInsTextImg(reqeust, img_id, lang):
+def getInsTextImg(request, img_id, lang):
     querySet = ExtractText.objects.filter(src_img_id=img_id)
     listTextExtract = serializers.serialize("json", querySet) 
-
+    
     srcImg = SrcImg.objects.get(img_id=img_id)
     image = Image.open("."+srcImg.image.url)
 
@@ -187,7 +187,7 @@ def trs_text_modify(request,img_id):
             targetText.save() #수정한 값 저장
             textId += 1 # 다음 text로 이동
     
-        return redirect('text_extract:insert', img_id)
+        return redirect('text_extract:insert', img_id, req['LAN'])
 
     
 
