@@ -13,9 +13,9 @@ export function getTransText(img_id, lan) {
   return axios.post(API_BASE_URL + `/translate/${img_id}/`, JSON.stringify({ LAN: `${lan}` }));
 }
 
-export function getResultImg(img_id) {
+export function getResultImg(img_id, lan) {
   /*텍스트 삽입된 이미지 가져오기*/
-  return axios.get(API_BASE_URL + `/getInsTextImg/${img_id}/`);
+  return axios.get(API_BASE_URL + `/getInsTextImg/${img_id}/${lan}/`);
 }
 
 export function setSrcText(img_id, srcModTexts) {

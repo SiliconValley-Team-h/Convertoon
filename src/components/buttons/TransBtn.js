@@ -11,7 +11,7 @@ function TransBtn() {
   /* 번역 텍스트 서버로부터 받아온 뒤 번역 이미지도 받아오기 */
   useEffect(() => {
     if (imgId !== 0 && transTexts.length !== 0) {
-      getResultImg(imgId).then(response => setResultImg(BASE_URL + response.data.image));
+      getResultImg(imgId, lan).then(response => setResultImg(BASE_URL + response.data.image));
     }
   }, [transTexts]);
 
