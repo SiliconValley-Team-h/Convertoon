@@ -17,6 +17,7 @@ function ExtTextField(props) {
   const [modTextResults, setModTextResults] = useState(result); /*수정된 번역 텍스트*/
   const [sendText, setSendText] = useState([]); /*서버로 전송할 텍스트*/
   const mounted = useRef(false); /*update시에만 화면 렌더링(mount -> false)*/
+  const imgMounted = useRef(false);
 
   function modifyText(e, i) {
     /*텍스트 입력 시 호출되는 함수*/
@@ -48,7 +49,11 @@ function ExtTextField(props) {
   }, [transTexts]);
 
   useEffect(() => {
-    console.log(resultImg);
+    if (!imgMounted.current) {
+      imgMounted.current = true;
+    } else {
+      navigate('/convertoon');
+    }
   }, [resultImg]);
 
   function BtnClicked() {
@@ -61,7 +66,6 @@ function ExtTextField(props) {
     /*API호출*/
     setTrsText(imgId, sendText, lan).then(response => {
       setResultImg(BASE_URL + response.data.image);
-      navigate('/convertoon');
     }); /*수정된 번역 텍스트를 서버로 보내기*/
   }
   return (
