@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import arrow from '../images/arrow.png';
 import LanDropdown from '../buttons/LanDropdown';
 import TransBtn from '../buttons/TransBtn';
@@ -9,6 +11,10 @@ import '../../styles/states/_LanState.scss';
 
 /*ModifyText 페이지에서 사용할 언어 선택 State*/
 function LanState() {
+  const [selectLan, setSelectLan] = useState(null);
+
+  useEffect(() => {}, [selectLan]);
+
   return (
     <section className="lanContainer">
       <div className="lanBox">
@@ -18,8 +24,8 @@ function LanState() {
         <img className="arrow" src={arrow} alt="arrow" />
       </div>
       <div className="transBox">
-        <LanDropdown />
-        <TransBtn />
+        <LanDropdown selectLan={selectLan} setSelectLan={setSelectLan} />
+        <TransBtn selectLan={selectLan} />
       </div>
     </section>
   );
