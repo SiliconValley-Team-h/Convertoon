@@ -1,12 +1,6 @@
 @import "./State";
 @import "../colors/Color";
 
-.lanText{
-    position:relative;
-    font-size: 14px;
-    color:$dark-gray;
-}
-
 // convertoon 페이지의 언어 선택 state + 번역 버튼
 .lanContainer {
     @extend .container;

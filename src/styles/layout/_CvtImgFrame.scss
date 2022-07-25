@@ -9,7 +9,7 @@
 // convertoon 페이지의 previewFrame + btnFrame
 .cvtimgFrame {
     @extend .imgFrame;
-    justify-content: flex-end;
+    justify-content: center;
     grid-template-rows: 88% 12%;
 }
 
@@ -20,6 +20,15 @@
     height: 75vh;
     width: 100%;
     overflow: scroll;
+}
+
+.imgViewFrame {
+    position:relative;
+    display: grid;
+    justify-content: center;
+    align-items:center;
+    height: 75vh;
+    width: 100%;
 }
 
 // convertoon 페이지의 버튼 프레임
