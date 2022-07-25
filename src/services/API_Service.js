@@ -23,7 +23,7 @@ export function setSrcText(img_id, srcModTexts) {
   return axios.post(API_BASE_URL + `/srcModify/${img_id}/`, { text_lists: srcModTexts });
 }
 
-export function setTrsText(img_id, trsModTexts) {
+export function setTrsText(img_id, trsModTexts, lan) {
   /*번역된 텍스트 수정*/
-  return axios.post(API_BASE_URL + `/trsModify/${img_id}/`, JSON.stringify({ text_lists: trsModTexts }));
+  return axios.post(API_BASE_URL + `/trsModify/${img_id}/`, JSON.stringify({ text_lists: trsModTexts, LAN: lan }));
 }
