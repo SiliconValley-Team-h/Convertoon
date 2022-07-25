@@ -25,9 +25,5 @@ export function setSrcText(img_id, srcModTexts) {
 
 export function setTrsText(img_id, trsModTexts, lan) {
   /*번역된 텍스트 수정*/
-<<<<<<< HEAD
-  return axios.post(API_BASE_URL + `/trsModify/${img_id}/`, { text_lists: trsModTexts, LAN: lan });
-=======
   return axios.post(API_BASE_URL + `/trsModify/${img_id}/`, JSON.stringify({ text_lists: trsModTexts, LAN: lan }));
->>>>>>> 0e014148438ee7fc8633b5c2ed57cf03637e7a27
 }

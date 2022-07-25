@@ -6,7 +6,7 @@ import { setTrsText } from '../../services/API_Service';
 import '../../styles/layout/_TextArea.scss';
 
 function ExtTextField(props) {
-  const { BASE_URL, lan, imgId, transTexts, setTransTexts, setResultImg } = useContext(ImgInfoContext);
+  const { BASE_URL, lan, imgId, transTexts, setTransTexts, resultImg, setResultImg } = useContext(ImgInfoContext);
 
   const navigate = useNavigate();
 
@@ -44,7 +44,12 @@ function ExtTextField(props) {
         return { pk: index, text: data };
       }),
     );
+    console.log(transTexts);
   }, [transTexts]);
+
+  useEffect(() => {
+    console.log(resultImg);
+  }, [resultImg]);
 
   function BtnClicked() {
     /*결과보기 버튼 클릭*/
