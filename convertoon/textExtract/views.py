@@ -34,7 +34,7 @@ def getOcrResults(request):
             
             image = '.'+latestSrcImg.image.url
             
-            reader = Reader(["ko"], gpu=False)
+            reader = Reader(["ko","en"], gpu=False)
             results = reader.readtext(image)
             text_lists = []
             for x in results:
