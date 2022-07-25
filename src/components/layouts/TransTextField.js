@@ -6,7 +6,8 @@ import { setTrsText } from '../../services/API_Service';
 import '../../styles/layout/_TextArea.scss';
 
 function ExtTextField(props) {
-  const { lan, BASE_URL, imgId, transTexts, setTransTexts, setResultImg } = useContext(ImgInfoContext);
+  const { BASE_URL, lan, imgId, transTexts, setTransTexts, setResultImg } = useContext(ImgInfoContext);
+
   const navigate = useNavigate();
 
   const result = props.texts.map((data, index) => {

@@ -27,7 +27,6 @@ function LanDropdown() {
       <option value="zh-TW">중국어 번체</option>
       <option value="vi">베트남어</option>
       <option value="id">인도네시아어</option>
-      <option value="th">태국어</option>
       <option value="de">독일어</option>
       <option value="ru">러시아어</option>
       <option value="es">스페인어</option>
