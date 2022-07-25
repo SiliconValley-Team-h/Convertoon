@@ -13,7 +13,9 @@ function FileBtn() {
   useEffect(() => {
     console.log(`imgId:${imgId}`);
   }, [imgId]);
-  useEffect(() => {}, [extrTexts]);
+  useEffect(() => {
+    console.log(`extrTexts:${extrTexts}`);
+  }, [extrTexts]);
 
   /* 파일 선택 버튼 클릭 시 이미지 선택 가능 */
   function onClickInput() {
