@@ -16,8 +16,7 @@
 
 // 언어 선택 드롭다운 스타일
 .lanDropDown {
-    position:absolute;
-    right:41%;
+    position:relative;
     width:120px;
     border:2px solid $light-blue;
     border-radius: 10px;
@@ -27,8 +26,7 @@
 // convertoon 페이지의 번역 버튼 스타일
 .transBtn {
     @extend .commonBtn;
-    position:absolute;
-    right:35%;
+    position:relative;
     font-size: 15px;
     width: 70px;
     height: 25px;
