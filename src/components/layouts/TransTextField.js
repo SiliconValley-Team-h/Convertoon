@@ -2,11 +2,11 @@ import React, { Fragment, useState, useEffect, useContext, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { ImgInfoContext } from '../../store/ImgInfo';
-import { setTrsText } from '../../services/API_Service';
+import { BASE_URL, setTrsText } from '../../services/API_Service';
 import '../../styles/layout/_TextArea.scss';
 
 function ExtTextField(props) {
-  const { BASE_URL, lan, imgId, transTexts, setTransTexts, resultImg, setResultImg } = useContext(ImgInfoContext);
+  const { lan, imgId, transTexts, setTransTexts, resultImg, setResultImg } = useContext(ImgInfoContext);
 
   const navigate = useNavigate();
 
