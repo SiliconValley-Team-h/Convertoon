@@ -6,7 +6,8 @@ import { ImgInfoContext } from '../../store/ImgInfo';
 import '../../styles/common/_Buttons.scss';
 
 function TransBtn() {
-  const { lan, imgId, transTexts, setTransTexts, resultImg, setResultImg } = useContext(ImgInfoContext);
+  const { lan, selectLan, imgId, transTexts, setLan, setTransTexts, resultImg, setResultImg } =
+    useContext(ImgInfoContext);
 
   /* 번역 텍스트 서버로부터 받아온 뒤 번역 이미지도 받아오기 */
   useEffect(() => {
@@ -16,14 +17,16 @@ function TransBtn() {
   }, [transTexts]);
 
   useEffect(() => {}, [resultImg]);
+  useEffect(() => {}, [lan]);
 
   /* 서버로부터 번역 텍스트 및 번역된 이미지 받기 */
   function onClickTrans() {
-    if (lan === null) {
+    if (selectLan === null && lan === null) {
       alert('번역할 언어를 선택해주세요.');
     } else {
+      setLan(selectLan);
       setTransTexts([]);
-      getTransText(imgId, lan).then(response => {
+      getTransText(imgId, selectLan).then(response => {
         response.data.text_lists.map(texts => setTransTexts(textArray => [...textArray, texts]));
       });
     }

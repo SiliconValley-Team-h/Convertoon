@@ -9,7 +9,8 @@ function ImgInfoProvider(props) {
   const [imgId, setImgId] = useState(0); // 원본 이미지 파일의 아이디
   const [extrTexts, setExtrTexts] = useState([]); // 추출한 텍스트
   const [transTexts, setTransTexts] = useState([]); // 번역한 텍스트
-  const [lan, setLan] = useState(null); // 선택한 번역 언어
+  const [lan, setLan] = useState(null); // 저장된 번역 언어
+  const [selectLan, setSelectLan] = useState(null); // 선택한 번역 언어
 
   const ImgInfo = {
     srcImg,
@@ -24,6 +25,8 @@ function ImgInfoProvider(props) {
     setTransTexts,
     lan,
     setLan,
+    selectLan,
+    setSelectLan,
   };
 
   return <ImgInfoContext.Provider value={ImgInfo}>{props.children}</ImgInfoContext.Provider>;

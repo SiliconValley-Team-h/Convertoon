@@ -1,0 +1,12 @@
+@import "../colors/Color";
+
+.lanText{
+    position:relative;
+    font-size: 14px;
+    color:$dark-gray;
+}
+
+.guidText {
+    white-space: pre-wrap;
+    font-size:18px;
+}

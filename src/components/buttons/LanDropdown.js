@@ -5,14 +5,16 @@ import '../../styles/common/_Buttons.scss';
 
 /* convertoon 페이지의 언어 선택 드롭다운 */
 function LanDropdown() {
-  const { lan, setLan } = useContext(ImgInfoContext);
+  const { lan, setLan, selectLan, setSelectLan } = useContext(ImgInfoContext);
 
   useEffect(() => {}, [lan]);
+  useEffect(() => {}, [selectLan]);
 
   /* 언어 선택 시 lan 변수에 저장 */
   function onChangeLan(event) {
     if (event.target.value !== 'none') {
-      setLan(event.target.value);
+      lan === null && setLan(event.target.value);
+      setSelectLan(event.target.value);
     }
   }
 
