@@ -2,18 +2,38 @@
 @import "../colors/Color";
 
 .lanText{
-    position:absolute;
-    left:45%;
+    position:relative;
     font-size: 14px;
     color:$dark-gray;
 }
 
 // convertoon 페이지의 언어 선택 state + 번역 버튼
-.lanState {
-    display: flex;
+.lanContainer {
+    @extend .container;
+    grid-template-columns: 4fr 1fr 4fr;
     height:30px;
-    border: 1px solid $light-gray;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+}
+
+// 원본 이미지 언어
+.lanBox {
+    @extend .viewBox;
+    display:flex;
+    justify-content:flex-end;
+    border: 0px;
+}
+
+// 화살표 이미지
+.arrowBox {
+    @extend .viewBox;
+    display:flex;
+    justify-content:center;
+    border: 0px;
+}
+
+// 언어 선택 및 번역 버튼
+.transBox {
+    @extend .viewBox;
+    display:flex;
+    justify-content:flex-start;
+    border: 0px;
 }
