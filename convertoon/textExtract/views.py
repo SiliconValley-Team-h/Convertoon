@@ -82,7 +82,7 @@ def getExtractTexts(request, img_id):
 
 
 
-def getInsTextImg(reqeust, img_id):
+def getInsTextImg(reqeust, img_id, lang):
     querySet = ExtractText.objects.filter(src_img_id=img_id)
     listTextExtract = serializers.serialize("json", querySet) 
 
@@ -112,7 +112,7 @@ def getInsTextImg(reqeust, img_id):
         draw.text((rect[0],rect[1]),enText,font=fnt,fill="black")
     
 
-    filename = 'resultImg_'+str(img_id)+'.jpg'
+    filename = 'resultImg_'+str(img_id)+'_'+str(lang)+'.jpg'
     image.save('./media/'+filename)
 
 
