@@ -1,9 +1,8 @@
 import React, { Fragment, useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ResponseData } from '../../utils/ResponseData';
 import { ImgInfoContext } from '../../store/ImgInfo';
-import { setTrsText, getResultImg } from '../../services/API_Service';
+import { setTrsText } from '../../services/API_Service';
 import '../../styles/layout/_TextArea.scss';
 
 function ExtTextField(props) {
