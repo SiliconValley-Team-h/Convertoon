@@ -40,6 +40,7 @@ function FileBtn() {
 
     let formData = new FormData();
     formData.append('image', event.target.files[0]);
+    setExtrTexts([[]]);
     postImg(formData).then(response => {
       setImgId(response.data.img_id);
       response.data.text_lists.map(texts => setExtrTexts(textArray => [...textArray, texts]));
