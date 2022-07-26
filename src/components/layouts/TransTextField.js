@@ -43,11 +43,11 @@ function ExtTextField(props) {
     /*결과보기 버튼 클릭*/
     const result = modTextResults.map(data => data.text);
     setTransTexts(result);
-    setTrsText(imgId, transTexts, lan).then(response => {
+    setTrsText(imgId, result, lan).then(response => {
       setResultImg(`${BASE_URL}${response.data.image}?timestamp=${Date.now()}`);
       setTimeout(function () {
         navigate('/convertoon');
-      }, 5000);
+      }, 3000);
     }); /*수정된 번역 텍스트를 서버로 보내기*/
   }
 
