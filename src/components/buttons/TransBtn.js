@@ -25,7 +25,6 @@ function TransBtn() {
       alert('번역할 언어를 선택해주세요.');
     } else {
       setLan(selectLan);
-      setTransTexts([]);
       getTransText(imgId, selectLan).then(response => {
         const result = response.data.text_lists.map(texts => {
           return texts;

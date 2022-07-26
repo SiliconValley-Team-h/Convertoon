@@ -35,7 +35,6 @@ function ExtTextField(props) {
     } else {
       /*update*/
       setTransTexts(sendText); /*번역된 텍스트 수정*/
-      SendData(); /*API 호출*/
     }
   }, [sendText]);
 
@@ -61,9 +60,6 @@ function ExtTextField(props) {
     setSendText(result); /*수정된 텍스트로 sendText를 수정*/
   }
 
-  function SendData() {
-    /*API호출*/
-  }
   return (
     <Fragment>
       <div className="TextSection">
