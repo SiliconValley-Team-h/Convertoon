@@ -6,7 +6,7 @@ import { BASE_URL, setTrsText } from '../../services/API_Service';
 import '../../styles/layout/_TextArea.scss';
 
 function ExtTextField(props) {
-  const { lan, imgId, transTexts, setTransTexts, resultImg, setResultImg } = useContext(ImgInfoContext);
+  const { lan, imgId, transTexts, setTransTexts, setResultImg } = useContext(ImgInfoContext);
 
   const navigate = useNavigate();
 
@@ -50,9 +50,9 @@ function ExtTextField(props) {
       setTrsText(imgId, transTexts, lan).then(response => {
         setResultImg('');
         setResultImg(BASE_URL + response.data.image);
-        if (resultImg !== '') {
+        setTimeout(function () {
           navigate('/convertoon');
-        }
+        }, 2000);
       }); /*수정된 번역 텍스트를 서버로 보내기*/
     }
   }, [transTexts]);
