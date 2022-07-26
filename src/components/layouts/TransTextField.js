@@ -2,11 +2,11 @@ import React, { Fragment, useState, useEffect, useContext, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { ImgInfoContext } from '../../store/ImgInfo';
-import { BASE_URL, setTrsText } from '../../services/API_Service';
+import { setTrsText } from '../../services/API_Service';
 import '../../styles/layout/_TextArea.scss';
 
 function ExtTextField(props) {
-  const { lan, imgId, transTexts, setTransTexts, resultImg, setResultImg } = useContext(ImgInfoContext);
+  const { lan, imgId, transTexts, setTransTexts } = useContext(ImgInfoContext);
 
   const navigate = useNavigate();
 
@@ -47,10 +47,10 @@ function ExtTextField(props) {
     );
     console.log(transTexts);
     if (resultBtn) {
-      setTrsText(imgId, transTexts, lan).then(response => {
-        setResultImg('');
-        setResultImg(BASE_URL + response.data.image);
-        navigate('/convertoon');
+      setTrsText(imgId, transTexts, lan).then(() => {
+        setTimeout(function () {
+          navigate('/convertoon');
+        }, 2000);
       }); /*수정된 번역 텍스트를 서버로 보내기*/
     }
   }, [transTexts]);
