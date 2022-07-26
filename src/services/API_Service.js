@@ -10,7 +10,7 @@ export function postImg(img) {
 
 export function getTransText(img_id, lan) {
   /*추출된 텍스트 번역*/
-  return axios.post(API_BASE_URL + `/translate/${img_id}/`, JSON.stringify({ LAN: `${lan}` }));
+  return axios.post(API_BASE_URL + `/translate/${img_id}/`, { LAN: lan });
 }
 
 export function getResultImg(img_id, lan) {
@@ -25,5 +25,5 @@ export function setSrcText(img_id, srcModTexts) {
 
 export function setTrsText(img_id, trsModTexts, lan) {
   /*번역된 텍스트 수정*/
-  return axios.post(API_BASE_URL + `/trsModify/${img_id}/`, JSON.stringify({ text_lists: trsModTexts, LAN: lan }));
+  return axios.post(API_BASE_URL + `/trsModify/${img_id}/`, { text_lists: trsModTexts, LAN: lan });
 }
