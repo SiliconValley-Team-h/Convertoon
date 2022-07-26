@@ -16,30 +16,53 @@ import '../styles/common/_Buttons.scss';
 function Convertoon() {
   const { srcImg, resultImg } = useContext(ImgInfoContext);
 
+  useEffect(() => {
+    console.log(`resultImg : ${resultImg}`);
+  });
+
+  function Main_Header() {
+    return (
+      <Fragment>
+        <Header />
+        <LanState />
+        <ConvertState />
+      </Fragment>
+    );
+  }
+
+  function orgImage() {
+    return (
+      <section className="cvtimgFrame">
+        {/*원본이미지를 담을 section*/}
+        {srcImg === '' ? (
+          <ImgView firstLine="선택한 이미지가" secondLine="여기에 보여집니다." />
+        ) : (
+          <PreviewFrame img={srcImg} alt={'srcImgPreview'} />
+        )}
+        <FileBtn />
+      </section>
+    );
+  }
+
+  function resultImage() {
+    return (
+      <section className="cvtimgFrame">
+        {/*번역이미지를 담을 section*/}
+        {resultImg === '' ? (
+          <ImgView firstLine="번역된 이미지가" secondLine="여기에 보여집니다." />
+        ) : (
+          <PreviewFrame img={resultImg} alt={'resultImgPreview'} />
+        )}
+        <ResultBtns />
+      </section>
+    );
+  }
   return (
     <Fragment>
-      <Header />
-      <LanState />
-      <ConvertState />
+      {Main_Header()}
       <div className="cvtimgFrames">
-        <section className="cvtimgFrame">
-          {/*원본이미지를 담을 section*/}
-          {srcImg === '' ? (
-            <ImgView firstLine="선택한 이미지가" secondLine="여기에 보여집니다." />
-          ) : (
-            <PreviewFrame img={srcImg} alt={'srcImgPreview'} />
-          )}
-          <FileBtn />
-        </section>
-        <section className="cvtimgFrame">
-          {/*번역이미지를 담을 section*/}
-          {resultImg === '' ? (
-            <ImgView firstLine="번역된 이미지가" secondLine="여기에 보여집니다." />
-          ) : (
-            <PreviewFrame img={resultImg} alt={'resultImgPreview'} />
-          )}
-          <ResultBtns />
-        </section>
+        {orgImage()}
+        {resultImage()}
       </div>
     </Fragment>
   );
