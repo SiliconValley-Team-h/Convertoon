@@ -36,7 +36,7 @@ function ExtTextField(props) {
         return { pk: index, text: data };
       }),
     );
-    console.log(transTexts);
+    console.log(`transTexts:${transTexts}`);
   }, [transTexts]);
 
   function BtnClicked() {
