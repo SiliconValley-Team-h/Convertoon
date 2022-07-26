@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useContext, useRef } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ImgInfoContext } from '../../store/ImgInfo';
@@ -6,7 +6,7 @@ import { BASE_URL, setTrsText } from '../../services/API_Service';
 import '../../styles/layout/_TextArea.scss';
 
 function ExtTextField(props) {
-  const { lan, imgId, transTexts, setTransTexts, setResultImg } = useContext(ImgInfoContext);
+  const { lan, imgId, resultImg, transTexts, setTransTexts, setResultImg } = useContext(ImgInfoContext);
 
   const navigate = useNavigate();
 
@@ -27,6 +27,10 @@ function ExtTextField(props) {
   /*BtnClicked()에서 setSendText를 실행한 후 실행됨*/
 
   useEffect(() => {
+    console.log(`resultImg : ${resultImg}`);
+  }, [resultImg]);
+
+  useEffect(() => {
     setModTextResults(
       transTexts.map((data, index) => {
         return { pk: index, text: data };
@@ -39,9 +43,11 @@ function ExtTextField(props) {
     /*결과보기 버튼 클릭*/
     const result = modTextResults.map(data => data.text);
     setTransTexts(result);
-    setTrsText(imgId, result, lan).then(response => {
-      setResultImg(BASE_URL + response.data.image);
-      navigate('/convertoon');
+    setTrsText(imgId, transTexts, lan).then(response => {
+      setResultImg(`${BASE_URL}${response.data.image}?timestamp=${Date.now()}`);
+      setTimeout(function () {
+        navigate('/convertoon');
+      }, 5000);
     }); /*수정된 번역 텍스트를 서버로 보내기*/
   }
 

@@ -16,10 +16,6 @@ import '../styles/common/_Buttons.scss';
 function Convertoon() {
   const { srcImg, resultImg } = useContext(ImgInfoContext);
 
-  useEffect(() => {
-    console.log(`resultImg : ${resultImg}`);
-  });
-
   function Main_Header() {
     return (
       <Fragment>
