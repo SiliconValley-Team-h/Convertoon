@@ -15,9 +15,6 @@ function ExtTextField(props) {
   });
 
   const [modTextResults, setModTextResults] = useState(result); /*수정된 번역 텍스트*/
-  const [sendText, setSendText] = useState([]); /*서버로 전송할 텍스트*/
-  const mounted = useRef(false); /*update시에만 화면 렌더링(mount -> false)*/
-  const [resultBtn, setResultBtn] = useState(false);
 
   function modifyText(e, i) {
     /*텍스트 입력 시 호출되는 함수*/
@@ -28,15 +25,6 @@ function ExtTextField(props) {
 
   /*sendText가 변경될 때 렌더링*/
   /*BtnClicked()에서 setSendText를 실행한 후 실행됨*/
-  useEffect(() => {
-    if (!mounted.current) {
-      /*mount*/
-      mounted.current = true;
-    } else {
-      /*update*/
-      setTransTexts(sendText); /*번역된 텍스트 수정*/
-    }
-  }, [sendText]);
 
   useEffect(() => {
     setModTextResults(
@@ -45,19 +33,16 @@ function ExtTextField(props) {
       }),
     );
     console.log(transTexts);
-    if (resultBtn) {
-      setTrsText(imgId, transTexts, lan).then(response => {
-        setResultImg(BASE_URL + response.data.image);
-        navigate('/convertoon');
-      }); /*수정된 번역 텍스트를 서버로 보내기*/
-    }
   }, [transTexts]);
 
   function BtnClicked() {
     /*결과보기 버튼 클릭*/
-    setResultBtn(true);
     const result = modTextResults.map(data => data.text);
-    setSendText(result); /*수정된 텍스트로 sendText를 수정*/
+    setTransTexts(result);
+    setTrsText(imgId, result, lan).then(response => {
+      setResultImg(BASE_URL + response.data.image);
+      navigate('/convertoon');
+    }); /*수정된 번역 텍스트를 서버로 보내기*/
   }
 
   return (
