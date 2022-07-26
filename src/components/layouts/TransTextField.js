@@ -17,7 +17,6 @@ function ExtTextField(props) {
   const [modTextResults, setModTextResults] = useState(result); /*수정된 번역 텍스트*/
   const [sendText, setSendText] = useState([]); /*서버로 전송할 텍스트*/
   const mounted = useRef(false); /*update시에만 화면 렌더링(mount -> false)*/
-  const imgMounted = useRef(false);
   const [resultBtn, setResultBtn] = useState(false);
 
   function modifyText(e, i) {
@@ -49,6 +48,7 @@ function ExtTextField(props) {
     console.log(transTexts);
     if (resultBtn) {
       setTrsText(imgId, transTexts, lan).then(response => {
+        setResultImg('');
         setResultImg(BASE_URL + response.data.image);
         navigate('/convertoon');
       }); /*수정된 번역 텍스트를 서버로 보내기*/
