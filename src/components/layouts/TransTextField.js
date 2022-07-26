@@ -50,17 +50,10 @@ function ExtTextField(props) {
     if (resultBtn) {
       setTrsText(imgId, transTexts, lan).then(response => {
         setResultImg(BASE_URL + response.data.image);
+        navigate('/convertoon');
       }); /*수정된 번역 텍스트를 서버로 보내기*/
     }
   }, [transTexts]);
-
-  useEffect(() => {
-    if (!imgMounted.current) {
-      imgMounted.current = true;
-    } else {
-      navigate('/convertoon');
-    }
-  }, [resultImg]);
 
   function BtnClicked() {
     /*결과보기 버튼 클릭*/
