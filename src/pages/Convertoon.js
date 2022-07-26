@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect } from 'react';
 import { ImgInfoContext } from '../store/ImgInfo';
 
 import Header from '../components/common/Header';
@@ -16,9 +16,6 @@ import '../styles/common/_Buttons.scss';
 function Convertoon() {
   const { srcImg, resultImg } = useContext(ImgInfoContext);
 
-  useEffect(() => {
-    console.log(resultImg);
-  }, [resultImg]);
   return (
     <Fragment>
       <Header />

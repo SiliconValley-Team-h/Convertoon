@@ -27,7 +27,10 @@ function TransBtn() {
       setLan(selectLan);
       setTransTexts([]);
       getTransText(imgId, selectLan).then(response => {
-        response.data.text_lists.map(texts => setTransTexts(textArray => [...textArray, texts]));
+        const result = response.data.text_lists.map(texts => {
+          return texts;
+        });
+        setTransTexts(result);
       });
     }
   }

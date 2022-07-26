@@ -48,11 +48,8 @@ function ExtTextField(props) {
     console.log(transTexts);
     if (resultBtn) {
       setTrsText(imgId, transTexts, lan).then(response => {
-        setResultImg('');
         setResultImg(BASE_URL + response.data.image);
-        setTimeout(function () {
-          navigate('/convertoon');
-        }, 2000);
+        navigate('/convertoon');
       }); /*수정된 번역 텍스트를 서버로 보내기*/
     }
   }, [transTexts]);
