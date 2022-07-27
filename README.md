@@ -21,6 +21,7 @@
 <img src="https://user-images.githubusercontent.com/87409442/181192944-7ae3197b-6ef3-4de6-8ad3-96a8f6a51721.png" width="800" />
 
 
+<br>
 
 ## File Structure
 ```
@@ -97,7 +98,6 @@ CORS_ORIGIN_WHITELIST = (
   'http://<url>',)
 ...
 ```
-<br>
 
 - settings_debug.json (Papago API key)
 ```json
@@ -111,7 +111,6 @@ CORS_ORIGIN_WHITELIST = (
 <br>
 
 ### Docker
-- settings.py
 ```docker
 docker-compose up --build
 ```
