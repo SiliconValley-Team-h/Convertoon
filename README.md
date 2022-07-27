@@ -5,21 +5,46 @@
 ![convertoon](https://user-images.githubusercontent.com/87409442/181190110-1b80256b-42bd-4d3f-ad68-567007c9402f.gif)
 
 
+
 ## Index
 * [Convertoon](#convertoon)
   * [Architecture](#architecture)
-  * [File manifest](#file-manifest)
+  * [File Structure](#file-structure)
   * [Tech Stack](#tech-stack)
-  * [Team members](#team-members)
+  * [Team Members](#team-members)
+<br>
+
 
 
 ## Architecture
 <img src="https://user-images.githubusercontent.com/87409442/181192944-7ae3197b-6ef3-4de6-8ad3-96a8f6a51721.png" width="800" />
 
-## File manifest
+
+
+## File Structure
+<br>
+
 
 
 ## Tech Stack
+```
+Frontend : React
+WSGI : Gunicorn
+Web Server : Nginx
+Backend : Django
+Database : SQLite
+AI : PyTorch 
+Etc : Docker, AWS
+```
+
+|Frontend|Backend|AI|DevOps|ETC|
+|:------:|:---:|:---:|:---:|:---:|
+|![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)<br>![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)|![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)<br>![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)|![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)|![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)<br>![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)<br>![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)|![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)<br>![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)<br>![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)|
 
 
-## Team members
+
+## Team Members
+|Name|김예린|안효진|엄하늘|장동훈|
+|:------:|:---:|:---:|:---:|:---:|
+|Github|[@Yerineee](https://github.com/Yerineee)||||
+|Role|Frontend|Frontend|Backend|DevOps|
