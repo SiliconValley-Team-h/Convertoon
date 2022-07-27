@@ -1,0 +1,20 @@
+.Section {
+    width: 100%;
+}
+
+.ImgSection {
+    @extend .Section;
+    height: 85vh;
+    overflow: scroll;
+}
+
+.TextSection {
+    @extend .Section;
+    height: 75vh;
+    overflow: scroll;
+}
+
+.BtnSection {
+    @extend .Section;
+    height: 100%;
+}

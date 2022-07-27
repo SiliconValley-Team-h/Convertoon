@@ -1,0 +1,8 @@
+@import "./State";
+
+// convertoon 페이지의 state
+.convertContainer {
+    @extend .container;
+    grid-template-columns: 1fr 1fr;
+    height:30px;
+}

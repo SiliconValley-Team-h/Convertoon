@@ -1,0 +1,85 @@
+@import "../colors/Color";
+
+// 공통적인 버튼 스타일
+.commonBtn {
+    color: black;
+    background-color: $light-yellow;
+    border: 0;
+    border-radius: 40px;
+    font-size: 18px;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    margin: 30px 20px;
+    cursor: pointer;
+}
+
+// 언어 선택 드롭다운 스타일
+.lanDropDown {
+    position:relative;
+    width:120px;
+    border:2px solid $light-blue;
+    border-radius: 10px;
+    text-align: center;
+}
+
+// convertoon 페이지의 번역 버튼 스타일
+.transBtn {
+    @extend .commonBtn;
+    position:relative;
+    font-size: 15px;
+    width: 70px;
+    height: 25px;
+    margin: 0px 20px;
+}
+
+.transBtn:disabled {
+    background-color: $light-gray;
+    cursor: default;
+}
+
+// 파일 선택 버튼 스타일
+#selectBtn {
+    display: none;
+}
+
+// convertoon 페이지의 수정 및 저장 버튼 스타일
+.resultBtns {
+    @extend .commonBtn;
+    width: 100px;
+    height: 40px;
+}
+
+.resultBtns:disabled {
+    background-color: $light-gray;
+    cursor: default;
+}
+
+// 확대/축소 틀
+.zoomBtnFrame {
+    color: black;
+    background-color: $light-gray;
+    width: 70px;
+    height: 25px;
+    border: 0;
+    border-radius: 40px;
+    padding-top: 5px;
+    top:20px;
+    right:40px;
+    position: absolute;
+    text-align: center;
+    cursor: pointer;
+}
+
+// 확대 버튼 스타일
+.zoominBtn {
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+// 축소 버튼 스타일
+.zoomoutBtn {
+    width: 20px;
+    height: 20px;
+}

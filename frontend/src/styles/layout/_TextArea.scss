@@ -1,0 +1,8 @@
+@import "../colors/Color";
+
+.TextArea {
+    resize: none;
+    width: 70%;
+    height: 80px;
+    border: 1px solid $light-blue;
+}

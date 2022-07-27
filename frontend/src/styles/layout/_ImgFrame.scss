@@ -1,0 +1,18 @@
+@import "../colors/Color";
+
+.imgFrames {
+    display: grid;
+    gap: 0;
+    height:85vh;
+    border-collapse: collapse;
+
+    .imgFrame {
+        background: white;
+        border: 1px solid  $light-gray;
+        display: grid;
+        position:relative;
+        grid-template-columns: 1fr;
+        align-items: flex-start;
+        text-align: center;
+    }
+}

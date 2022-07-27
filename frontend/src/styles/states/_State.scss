@@ -1,0 +1,18 @@
+@import "../colors/Color";
+
+.container {
+    display: grid;
+    gap: 0;
+    border-collapse: collapse;
+}
+
+.viewBox {
+    background: white;
+    border: 1px solid $light-gray;
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color:$dark-gray;
+}

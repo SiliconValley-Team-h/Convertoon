@@ -1,0 +1,6 @@
+@import './ImgFrame';
+
+.modimgFrames {
+    @extend .imgFrames;
+    grid-template-columns: 1fr 1fr 1fr;
+}

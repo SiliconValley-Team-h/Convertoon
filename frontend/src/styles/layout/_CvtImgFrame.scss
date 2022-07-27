@@ -1,0 +1,40 @@
+@import './ImgFrame';
+
+// convertoon 페이지의 전체적인 프레임
+.cvtimgFrames {
+    @extend .imgFrames;
+    grid-template-columns: 1fr 1fr;
+}
+
+// convertoon 페이지의 previewFrame + btnFrame
+.cvtimgFrame {
+    @extend .imgFrame;
+    justify-content: center;
+    grid-template-rows: 88% 12%;
+}
+
+// convertoon 페이지의 이미지 미리보기 프레임
+.previewFrame {
+    position:absolute;
+    border-right: 1px solid $light-gray;
+    height: 75vh;
+    width: 100%;
+    overflow: scroll;
+}
+
+.imgViewFrame {
+    position:relative;
+    display: grid;
+    justify-content: center;
+    align-items:center;
+    height: 75vh;
+    width: 100%;
+}
+
+// convertoon 페이지의 버튼 프레임
+.btnFrame {
+    height: 100%;
+    width:100%;
+    justify-content: center;
+    align-items: flex-start;
+}
