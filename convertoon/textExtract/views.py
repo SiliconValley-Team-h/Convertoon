@@ -1,3 +1,5 @@
+from http.client import BAD_REQUEST
+from urllib.error import HTTPError
 from django.shortcuts import render, redirect
 
 from textExtract.forms import SrcImgForm
@@ -130,7 +132,6 @@ def getInsTextImg(request, img_id, lang):
     return JsonResponse(serializer.data)
 
 
-
 @method_decorator(csrf_exempt, name="dispatch")
 def api_papago(request,img_id): 
     if(request.method=='POST'):
@@ -148,25 +149,33 @@ def api_papago(request,img_id):
 
             source = ExtractText.objects.get(text_id=i)
             encText = urllib.parse.quote(source.src_text)
-            
 
             data = "source=ko&target="+lan+"&text=" + encText #papago에 넘겨줌
+            
             url = "https://openapi.naver.com/v1/papago/n2mt"
             request = urllib.request.Request(url)
             request.add_header("X-Naver-Client-Id",client_id)
             request.add_header("X-Naver-Client-Secret",client_secret)
-            response = urllib.request.urlopen(request, data=data.encode("utf-8"))
-            rescode = response.getcode()
-            if(rescode==200):
-                response_body = response.read()
-                result_dict = json.loads(response_body.decode('utf-8'))
-                translatedText = result_dict["message"]["result"]["translatedText"]
-                trstext_lists.append(translatedText)
-                source.trs_text = translatedText
-                source.save()
-                cnt += 1
-            else:
-                return HttpResponse("error")
+            try : 
+                response = urllib.request.urlopen(request, data=data.encode("utf-8")) #공백 오류 발생
+            except HTTPError :
+                    translatedText = ''
+                    trstext_lists.append(translatedText)
+                    source.trs_text = translatedText
+                    source.save()
+                    cnt += 1
+            else : 
+                rescode = response.getcode()
+                if(rescode==200):
+                    response_body = response.read()
+                    result_dict = json.loads(response_body.decode('utf-8'))
+                    translatedText = result_dict["message"]["result"]["translatedText"]
+                    trstext_lists.append(translatedText)
+                    source.trs_text = translatedText
+                    source.save()
+                    cnt += 1
+                else:
+                    return HttpResponse("error")
         return JsonResponse({
             'text_lists' : trstext_lists,
             'count' : cnt,
