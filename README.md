@@ -79,7 +79,6 @@
 ```bash
 git clone https://github.com/SiliconValley-Team-h/Convertoon.git
 ```
-<br>
 
 ###  Front-end setting
 - API_Service.js
@@ -88,7 +87,6 @@ git clone https://github.com/SiliconValley-Team-h/Convertoon.git
 export const BASE_URL = 'http://<url>';
 ...
 ```
-<br>
 
 ### Back-end setting
 - settings.py
@@ -108,7 +106,6 @@ CORS_ORIGIN_WHITELIST = (
     }
 }
 ```
-<br>
 
 ### Docker
 ```docker
