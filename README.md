@@ -22,7 +22,54 @@
 
 
 ## File Structure
-<br>
+```
+
+├── backend
+│   ├── Dockerfile
+│   ├── Font
+│   ├── Pillow.ipynb
+│   ├── README.md
+│   ├── convertoon
+│   ├── db.sqlite3
+│   ├── manage.py
+│   ├── media
+│   ├── requirements.txt
+│   ├── settings_debug.json
+│   └── textExtract
+├── docker-compose.yml
+├── frontend
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── build
+│   ├── node_modules
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   ├── src
+│   │   ├── App.js
+│   │   ├── components
+│   │   │   ├── buttons
+│   │   │   ├── common
+│   │   │   ├── images
+│   │   │   ├── layouts
+│   │   │   └── states
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── pages
+│   │   ├── services
+│   │   ├── store
+│   │   ├── styles
+│   │   │   ├── colors
+│   │   │   ├── common
+│   │   │   ├── layout
+│   │   │   └── states
+│   │   └── utils
+│   └── yarn.lock
+└── nginx
+    ├── Dockerfile
+    └── default.conf
+
+```
 
 
 
@@ -39,12 +86,12 @@ Etc : Docker, AWS
 
 |Frontend|Backend|AI|DevOps|ETC|
 |:---:|:---:|:---:|:---:|:---:|
-|![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)<br>![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)|![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)<br>![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)<br>![Gunicorn](https://img.shields.io/badge/gunicorn-%298729.svg?style=for-the-badge&logo=gunicorn&logoColor=white)|![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)|![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)<br>![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)<br>![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)|![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)<br>![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)<br>![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)|
+|![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)<br>![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)|![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)<br>![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)<br>![Gunicorn](https://img.shields.io/badge/gunicorn-%298729.svg?style=for-the-badge&logo=gunicorn&logoColor=white)|![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)|![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)<br>![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)<br>![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)|![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)<br>![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)<br>![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)<br>![Postman](https://img.shields.io/badge/Postman-%23EE4C2C.svg?style=for-the-badge&logo=postman&logoColor=white)|
 
 
 
 ## Team Members
 |Name|김예린|안효진|엄하늘|장동훈|
 |:---------:|:---:|:---:|:---:|:---:|
-|Github|[@Yerineee](https://github.com/Yerineee)||||
+|Github|[@Yerineee](https://github.com/Yerineee)|||[@jdonghun01](https://github.com/deafsloth)|
 |Role|Frontend|Frontend|Backend|DevOps|
