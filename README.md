@@ -10,6 +10,7 @@
 * [Convertoon](#convertoon)
   * [Architecture](#architecture)
   * [File Structure](#file-structure)
+  * [Installation](#Installation)
   * [Tech Stack](#tech-stack)
   * [Team Members](#team-members)
 <br>
@@ -23,7 +24,6 @@
 
 ## File Structure
 ```
-
 ├── backend
 │   ├── Dockerfile
 │   ├── Font
@@ -70,8 +70,52 @@
     └── default.conf
 
 ```
+<br>
 
+## Installation
+###  Github
+- Clone Repository
+```bash
+git clone https://github.com/SiliconValley-Team-h/Convertoon.git
+```
+<br>
 
+###  Front-end setting
+- API_Service.js
+```js
+...
+export const BASE_URL = 'http://<url>';
+...
+```
+<br>
+
+### Back-end setting
+- settings.py
+```py
+...
+CORS_ORIGIN_WHITELIST = (
+  'http://<url>',)
+...
+```
+<br>
+
+- settings_debug.json (Papago API key)
+```json
+{
+    "NAVER":{
+        "CLIENT_ID":"...",
+        "CLIENT_SECRET":"..."
+    }
+}
+```
+<br>
+
+### Docker
+- settings.py
+```docker
+docker-compose up --build
+```
+<br>
 
 ## Tech Stack
 ```
