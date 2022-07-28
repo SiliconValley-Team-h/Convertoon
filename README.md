@@ -145,5 +145,5 @@ Etc : Docker, AWS
 
 |Name|김예린|안효진|엄하늘|장동훈|
 |:---------:|:---:|:---:|:---:|:---:|
-|Github|[@Yerineee](https://github.com/Yerineee)|[@narlo23](https://github.com/narlo23)||[@jdonghun01](https://github.com/deafsloth)|
+|Github|[@Yerineee](https://github.com/Yerineee)|[@narlo23](https://github.com/narlo23)|[@trash1ife](https://github.com/trash1ife)|[@jdonghun01](https://github.com/deafsloth)|
 |Role|Frontend, AI|Frontend|Backend|Backend, DevOps, AI|
