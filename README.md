@@ -13,7 +13,8 @@ You can check the translated webtoon image by selecting the webtoon image and la
   - [Installation](#Installation)
   - [Tech Stack](#tech-stack)
   - [Team Members](#team-members)
-    <br>
+
+<br>
 
 ## Architecture
 
